@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import logo from '../logo.svg';
+// import './bootstrap.css';
 import {Link} from 'react-router-dom';
 import phone from '../images/phoneIcon.png';
 import text from '../images/textIcon.png';
