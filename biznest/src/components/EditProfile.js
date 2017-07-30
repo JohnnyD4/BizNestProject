@@ -19,10 +19,10 @@ class EditProfile extends Component {
   render() {
     return (
         <div>
-            {/*<div className="navbar">
-                            <span id="hamburger">&#9776;</span>
-                            <h1>Profile</h1>
-                        </div> */}
+            <div className="navbar">
+                <span id="hamburger">&#9776;</span>
+                <h1>Edit</h1>
+            </div>
 
             <div className="sideNav" id="mySideNav">
                 <a href="javascript:void(0)" id="closeNavBtn">&times;</a>
@@ -39,7 +39,7 @@ class EditProfile extends Component {
                     <div className="col-sm-4">
                         <div className="profilePic">
                             <p className="imgP">click on photo to change</p>
-                            <img className="editProfileImage" src="http://cumbrianrun.co.uk/wp-content/uploads/2014/02/default-placeholder-300x300.png"/>
+                            <img className="editProfileImage" alt="Profile" src="http://cumbrianrun.co.uk/wp-content/uploads/2014/02/default-placeholder-300x300.png"/>
 
                         </div>
                     </div>
@@ -51,11 +51,11 @@ class EditProfile extends Component {
                                 <input type="text" id="editName" value="John Davis"/>
                             </div>
                             <div className="icons">
-                                <a href="#"><img className="icon" src={phone}/></a>
+                                <a href="#"><img className="icon" alt="Phone Icon" src={phone}/></a>
                                 <input type="text" id="editName" value="954-434-4340"/>
-                                <a href="#"><img className="icon" src={text}/></a>
+                                <a href="#"><img className="icon" alt="Text Icon" src={text}/></a>
                                 <input type="text" id="editName" value="954-258-4340"/>
-                                <a href="#"><img className="icon" src={email}/></a>
+                                <a href="#"><img className="icon" alt="Email Icon" src={email}/></a>
                                 <input type="text" id="editName" value="johnsdavis95@gmail.com"/>
 
 
@@ -81,15 +81,15 @@ class EditProfile extends Component {
                 <div className="row">
                     <div className="col-xs-3">
                         <ul className="list">
-                            <li className="social"><a href="#"><img className="icon" src={LinkedIn}/>LinkedIn</a><input type="text" id="editName"/></li>
-                            <li className="social"><a href="#"><img className="icon" src={GitHub}/>GitHub</a><input type="text" id="editName"/></li>
-                            <li className="social"><a href="#"><img className="icon" src={Google}/>Google+</a><input type="text" id="editName"/></li>
-                            <li className="social"><a href="#"><img className="icon" src={Twitter}/>Twitter</a><input type="text" id="editName"/></li>
-                            <li className="social"><a href="#"><img className="icon" src={Facebook}/>Facebook</a><input type="text" id="editName"/></li>
-                            <li className="social"><a href="#"><img className="icon" src={Youtube}/>Youtube</a><input type="text" id="editName"/></li>
-                            <li className="social"><a href="#"><img className="icon" src={Instagram}/>Instagram</a><input type="text" id="editName"/></li>
-                            <li className="social"><a href="#"><img className="icon" src={Pinterest}/>Pinterest</a><input type="text" id="editName"/></li>
-                            <li className="socail"><a href="#"><img className="icon" src={Tumblr}/>Tumblr</a><input type="text" id="editName"/></li>
+                            <li className="social"><a href="#"><img className="icon" alt="LinkedIn" src={LinkedIn}/>LinkedIn</a><input type="text" id="editName"/></li>
+                            <li className="social"><a href="#"><img className="icon" alt="GitHub" src={GitHub}/>GitHub</a><input type="text" id="editName"/></li>
+                            <li className="social"><a href="#"><img className="icon" alt="Google+" src={Google}/>Google+</a><input type="text" id="editName"/></li>
+                            <li className="social"><a href="#"><img className="icon" alt="Twitter" src={Twitter}/>Twitter</a><input type="text" id="editName"/></li>
+                            <li className="social"><a href="#"><img className="icon" alt="Facebook" src={Facebook}/>Facebook</a><input type="text" id="editName"/></li>
+                            <li className="social"><a href="#"><img className="icon" alt="Youtube" src={Youtube}/>Youtube</a><input type="text" id="editName"/></li>
+                            <li className="social"><a href="#"><img className="icon" alt="Instagram" src={Instagram}/>Instagram</a><input type="text" id="editName"/></li>
+                            <li className="social"><a href="#"><img className="icon" alt="Pinterest" src={Pinterest}/>Pinterest</a><input type="text" id="editName"/></li>
+                            <li className="socail"><a href="#"><img className="icon" alt="Tumblr" src={Tumblr}/>Tumblr</a><input type="text" id="editName"/></li>
                         </ul>
 
                     </div>

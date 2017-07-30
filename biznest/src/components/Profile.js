@@ -38,7 +38,7 @@ class Profile extends Component {
                 <div className="row">
                     <div className="col-sm-4">
                         <div className="profilePic">
-                            <img className="profileImage" src="http://cumbrianrun.co.uk/wp-content/uploads/2014/02/default-placeholder-300x300.png"/>
+                            <img className="profileImage" alt="Profile" src="http://cumbrianrun.co.uk/wp-content/uploads/2014/02/default-placeholder-300x300.png"/>
 
                         </div>
                     </div>
@@ -49,9 +49,9 @@ class Profile extends Component {
                                 <h3 id="userName">John Davis</h3>
                             </div>
                             <div className="icons">
-                                <a href="#"><img className="icon" src={phone}/></a>
-                                <a href="#"><img className="icon" src={text}/></a>
-                                <a href="#"><img className="icon" src={email}/></a>
+                                <a href="#"><img className="icon" alt="Phone Icon" src={phone}/></a>
+                                <a href="#"><img className="icon" alt="Text Icon" src={text}/></a>
+                                <a href="#"><img className="icon" alt="Email Icon" src={email}/></a>
 
 
                             </div>
@@ -76,15 +76,15 @@ class Profile extends Component {
                 <div className="row">
                     <div className="col-xs-3">
                         <ul className="list">
-                            <li className="social"><a href="#"><img className="icon" src={LinkedIn}/>LinkedIn</a></li>
-                            <li className="social"><a href="#"><img className="icon" src={GitHub}/>GitHub</a></li>
-                            <li className="social"><a href="#"><img className="icon" src={Google}/>Google+</a></li>
-                            <li className="social"><a href="#"><img className="icon" src={Twitter}/>Twitter</a></li>
-                            <li className="social"><a href="#"><img className="icon" src={Facebook}/>Facebook</a></li>
-                            <li className="social"><a href="#"><img className="icon" src={Youtube}/>Youtube</a></li>
-                            <li className="social"><a href="#"><img className="icon" src={Instagram}/>Instagram</a></li>
-                            <li className="social"><a href="#"><img className="icon" src={Pinterest}/>Pinterest</a></li>
-                            <li className="socail"><a href="#"><img className="icon" src={Tumblr}/>Tumblr</a></li>
+                            <li className="social"><a href="#"><img className="icon" alt="LinkedIn" src={LinkedIn}/>LinkedIn</a></li>
+                            <li className="social"><a href="#"><img className="icon" alt="GitHub" src={GitHub}/>GitHub</a></li>
+                            <li className="social"><a href="#"><img className="icon" alt="Google+" src={Google}/>Google+</a></li>
+                            <li className="social"><a href="#"><img className="icon" alt="Twitter" src={Twitter}/>Twitter</a></li>
+                            <li className="social"><a href="#"><img className="icon" alt="Facebook" src={Facebook}/>Facebook</a></li>
+                            <li className="social"><a href="#"><img className="icon" alt="YouTube" src={Youtube}/>Youtube</a></li>
+                            <li className="social"><a href="#"><img className="icon" alt="Instagram" src={Instagram}/>Instagram</a></li>
+                            <li className="social"><a href="#"><img className="icon" alt="Pinterest" src={Pinterest}/>Pinterest</a></li>
+                            <li className="socail"><a href="#"><img className="icon" alt="Tumblr" src={Tumblr}/>Tumblr</a></li>
                         </ul>
 
                     </div>
