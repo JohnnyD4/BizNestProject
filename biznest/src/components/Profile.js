@@ -19,10 +19,10 @@ class Profile extends Component {
   render() {
     return (
         <div>
-            {/*<div className="navbar">
-                            <span id="hamburger">&#9776;</span>
-                            <h1>Profile</h1>
-                        </div> */}
+            <div className="navbar">
+                <span id="hamburger">&#9776;</span>
+                <h1>Profile</h1>
+            </div>
 
             <div className="sideNav" id="mySideNav">
                 <a href="javascript:void(0)" id="closeNavBtn">&times;</a>
