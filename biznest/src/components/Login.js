@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 // import logo from '../logo.svg';
 import {Link} from 'react-router-dom';
+
+import axios from 'axios';
+
+import Profile from './Profile';
+
 import './App.css';
 
 class Login extends Component {
@@ -23,22 +28,54 @@ class Login extends Component {
   	}
 
   	handleSubmit(event) {
-   		console.log('A name was submitted: ' + this.state.emailAddress + ' ' + this.state.password);
+   		
     	event.preventDefault();
 
-    	 fetch('http://localhost:4000/login')
-	      .then((response) => response.json())
-	      .then((responseJson) => {
-	        console.log("helo");
-	      })
-	      .catch((error) => {
-	        console.error(error);
-	      });
+    	// var data = {
+    	// 	emailAddress : this.state.emailAddress,
+    	// 	password : this.state.password
+    	// }
+    	// console.log(data);
+
+    	axios.post('http://localhost:4000/api/login',  
+    	{
+    		emailAddress: this.state.emailAddress,
+    		password: this.state.password
+    	})
+
+    	.then(function(result) {
+    		console.log(result);
+    		var content = result;
+    		// console.log(content.data);
+
+    		if (content.data.length === 1) {
+    			console.log(content.data[0].first_name);
+    			return <Profile />
+    		} else {
+    			console.log(content.data);
+    		}
+    	})
+
+    	.catch(function(err) {
+    		if (err) throw err;
+    	})
+
+    	// fetch('/api/login')
+	      
+	    //   .then((response) => {
+	    //     console.log(response);
+	    //   })
+	    //   .catch((error) => {
+	    //     console.error(error);
+	    //   });
+
+
   	}
 
   render() {
     return (
     	<div>
+
 	    	<div className = "navbar">
 	            <h1>BizNest</h1>
 	      	</div>
@@ -47,14 +84,26 @@ class Login extends Component {
 	            
 	              	<form id="signUpForm" onSubmit={this.handleSubmit}>
 		              	<div className="signUpDiv">
-			                <input type="text" value={this.state.emailAddress} onChange={this.emailHandleChange} id="emailAddress" name="email" placeholder="Email Address" required="required"/>
+			                <input type="text" 
+			                		value={this.state.emailAddress} 
+			                		onChange={this.emailHandleChange} 
+			                		id="emailAddress" 
+			                		name="email" 
+			                		placeholder="Email Address" 
+			                		required="required"/>
 
-			                <input type="password" value={this.state.password} onChange={this.passwordHandleChange} id="password" name="pass" placeholder="Create Password" required="required"/>
+			                <input type="password" 
+			                		value={this.state.password} 
+			                		onChange={this.passwordHandleChange} 
+			                		id="password" 
+			                		name="pass" 
+			                		placeholder="Create Password" 
+			                		required="required"/>
 
 			                
 						</div>
 						{/*<Link to="/profile"> */}
-						<button className="btn btn-primary" id="buttonSignUp" type="submit">Login</button>
+						<button className="btn btn-primary" id="buttonSignUp" type="submit"><Link to="/profile">Login</Link></button>
 	              	</form>
 	             
 	        </div>

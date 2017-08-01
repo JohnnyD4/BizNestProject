@@ -15,10 +15,20 @@ var port = process.env.PORT||4000;
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static('public'));
 
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json())
+
+// app.use(express.bodyParser());
+
 
 // Override with POST having ?_method=DELETE
 app.use(methodOverride("_method"));
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 app.use(session({
     key: 'session_cookie_name',

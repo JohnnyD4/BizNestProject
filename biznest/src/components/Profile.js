@@ -16,16 +16,24 @@ import Tumblr from '../images/Tumblr.png';
 import './App.css';
 
 class Profile extends Component {
+    showSideNav(event) {
+        document.getElementById("mySideNav").style.width = "250px";
+    }
+
+    hideSideNav(event) {
+        document.getElementById("mySideNav").style.width = "0px";
+}
+
   render() {
     return (
         <div>
             <div className="navbar">
-                <span id="hamburger">&#9776;</span>
+                <span onClick={this.showSideNav} id="hamburger">&#9776;</span>
                 <h1>Profile</h1>
             </div>
 
             <div className="sideNav" id="mySideNav">
-                <a href="javascript:void(0)" id="closeNavBtn">&times;</a>
+                <a href="javascript:void(0)" onClick={this.hideSideNav} id="closeNavBtn">&times;</a>
                 <input type="text" id="searchBar" placeholder="Search in Contacts"/>
                 <a href="#" id="sideName" className="sideStyle"></a>
                 <a href="#" className="sideStyle">Contacts</a>

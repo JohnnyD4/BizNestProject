@@ -8,21 +8,45 @@ var model = require('../model/model.js');
 
 router.get("/home", function(req, res) {
 	console.log("hello");
-	model.testing("John", function(data) {
-
-	console.log("controller", data[0].email_address);
-	})
+	
 
 	// res.render("index");
 })
 
-router.post("/Login", function(req, res) {
-	console.log(" post Login");
+router.post("/api/login", function(req, res, next) {
+	// console.log(" post Login");
+	console.log(req.body);
+
+	var emailAddress = req.body.emailAddress;
+
+	var password = req.body.password
+	model.testing(emailAddress, password, function(data) {
+
+	// console.log("controller", data[0].email_address);
+		console.log(data);
+		res.send(data);
+		// res.redirect("/profile");
+	})
+	
 })
 
-router.get("/Login", function(req,res) {
+router.get("/api/login", function(req, res, next) {
 	console.log("get login");
-	res.send("login");
+	model.testing("John", function(data) {
+
+	console.log("controller", data[0].email_address);
+	var dataPack = {
+		firstName: data[0].first_name,
+		lastName: data[0].last_name,
+		emailAddress: data[0].email_address
+	}
+	res.send(data);
+	})
+	
+})
+
+router.get("/profile", function(req, res) {
+	console.log("profile");
 })
 
 

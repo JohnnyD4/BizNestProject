@@ -1,18 +1,36 @@
 var connection = require("../config/connection.js")['connection'];
 
 var orm = {
-	testing: function(firstName, cb) {
+	testing: function(emailAddress, password, cb) {
 
-		var queryString = "SELECT * FROM `user` WHERE first_name = '" + firstName + "';";
+		var queryString = "SELECT * FROM `user` WHERE email_address = '" + emailAddress + "'";
+
+    queryString += " AND password = '" + password + "';";
 
 		// console.log("orm line 8", queryString);
 
 		connection.query(queryString, function(err, data) {
 			if (err) throw err;
+          
+        try{
 
-			// console.log("orm data line 13", data);
+          if(!data[0]) {
+          
+            throw new Error("Incorrect email or password");
+          
+          }else {
 
-			cb(data);
+            cb(data);
+
+          }
+
+        }catch(error){
+
+          console.log(error.message);
+          cb(error.message);
+        } 
+
+
 		})
 	} 
 }

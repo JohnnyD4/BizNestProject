@@ -1,8 +1,8 @@
 var orm = require("../config/orm.js");
 
 var model = {
-	testing: function(firstName, cb) {
-		orm.testing(firstName, function (res) {
+	testing: function(emailAddress, password, cb) {
+		orm.testing(emailAddress, password, function (res) {
 
 			cb(res);
 		})

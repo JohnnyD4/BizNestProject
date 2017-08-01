@@ -1,32 +1,25 @@
-import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
-// import logo from '../logo.svg';
-import './App.css';
-
-class Signup extends Component {
+// 'use strict';
+ 
+import React from 'react';
+import FacebookLogin from 'react-facebook-login';
+ 
+class MyComponent extends React.Component {
+  responseFacebook(response) {
+    console.log(response)
+  }
+ 
   render() {
     return (
-        <div className="signUpPage">
-            <h2>Sign Up for BizNest</h2>
-           
-                {/*<form id="signUpForm" method="post"> */}
-                    <div className="signUpDiv">
-                        <input type="text" id="firstName" name="first" placeholder="First Name" required="required"/>
-                        <input type="text" id="lastName" name="last" placeholder="Last Name" required="required"/>
-
-                        <input type="text" id="emailAddress" name="email" placeholder="Email Address" required="required"/>
-
-                        <input type="password" id="password" name="pass" placeholder="Create Password" required="required"/>
-                        <input type="password" id="verifyPassword" name="repeat" placeholder="Verify Password" required="required"/>
-
-                
-                    </div> 
-                    <Link to="/Profile"><button className="btn btn-primary" id="buttonSignUp" type="submit" form="signUpForm" name="signUpButton" value="submit">Create Profile</button></Link>
-             {/* </form> */}
-             
-        </div>
-    );
+        <div className="signupPage">
+            <FacebookLogin
+                appId="1088597931155576"
+                autoLoad={true}
+                fields="name,email,picture"
+                callback={this.responseFacebook}
+            />
+        </div>    
+    )
   }
 }
-
-export default Signup;
+ 
+export default MyComponent;
