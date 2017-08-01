@@ -14,15 +14,33 @@ import Instagram from '../images/Instagram.png';
 import Pinterest from '../images/Pinterest.png';
 import Tumblr from '../images/Tumblr.png';
 import './App.css';
+import Login from './Login';
+
 
 class Profile extends Component {
+    constructor(props) {
+        super(props);
+        this.props.
+    }
+
     showSideNav(event) {
         document.getElementById("mySideNav").style.width = "250px";
     }
 
     hideSideNav(event) {
         document.getElementById("mySideNav").style.width = "0px";
-}
+    }
+
+    fetchUserData() {
+        return fetch('http://localhost:4000/api/login')
+          
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+    }
 
   render() {
     return (

@@ -12,7 +12,7 @@ class Login extends Component {
 
 	constructor(props) {
 	    super(props);
-	    this.state = {emailAddress: '', password: ''};
+	    this.state = {emailAddress: '', password: '', userData: ''};
 
 	    this.emailHandleChange = this.emailHandleChange.bind(this);
 	    this.passwordHandleChange = this.passwordHandleChange.bind(this);
@@ -28,7 +28,8 @@ class Login extends Component {
   	}
 
   	handleSubmit(event) {
-   		
+   		var user = this;
+
     	event.preventDefault();
 
     	// var data = {
@@ -44,13 +45,14 @@ class Login extends Component {
     	})
 
     	.then(function(result) {
-    		console.log(result);
+    		// console.log(result);
     		var content = result;
     		// console.log(content.data);
 
     		if (content.data.length === 1) {
     			console.log(content.data[0].first_name);
-    			return <Profile />
+    			user.setState({userData: content.data[0]});
+    			this.props.callbackFromParent(content.data[0]);
     		} else {
     			console.log(content.data);
     		}
@@ -105,7 +107,9 @@ class Login extends Component {
 						{/*<Link to="/profile"> */}
 						<button className="btn btn-primary" id="buttonSignUp" type="submit"><Link to="/profile">Login</Link></button>
 	              	</form>
-	             
+	            {/*<Profile
+	            	userData = {this.state.userData}
+	            /> */}
 	        </div>
 	    </div>
     );
