@@ -30,6 +30,25 @@ router.post("/api/login", function(req, res, next) {
 	
 })
 
+router.post("/facebook/login", function(req, res, next) {
+	console.log("facebook login");
+
+	// console.log(req.body.name);
+	// console.log(req.body.picture.data.url);
+	// console.log("userID:", req.body.userID);
+	// console.log("accessToken:", req.body.accessToken);
+
+	model.insertFacebookUser(
+		req.body.name,
+		req.body.picture.data.url,
+		req.body.userID,
+		req.body.accessToken, 
+		function(data) {
+			console.log(data);
+			res.send(data);
+		})
+})
+
 router.get("/api/login", function(req, res, next) {
 	console.log("get login");
 	model.testing("John", function(data) {

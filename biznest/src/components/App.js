@@ -13,7 +13,7 @@ class App extends Component {
     return (
     	<div>
     	{this.props.children}
-            <Login callBackFromParent={this.myCallBack}/>
+            
 
     	</div>
 

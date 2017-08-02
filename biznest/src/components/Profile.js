@@ -15,12 +15,21 @@ import Pinterest from '../images/Pinterest.png';
 import Tumblr from '../images/Tumblr.png';
 import './App.css';
 import Login from './Login';
+import LoginHOC from 'react-facebook-login-hoc';
 
+const configureLoginProps = {
+  scope: 'public_profile, email',
+  xfbml: false,
+  cookie: false,
+  version: 2.6,
+  language: 'en_US',
+  appId: '490135684667453'
+}
 
 class Profile extends Component {
     constructor(props) {
         super(props);
-        // this.props.
+        this.logout = this.props.fb.logout;
     }
 
     showSideNav(event) {
@@ -30,6 +39,11 @@ class Profile extends Component {
     hideSideNav(event) {
         document.getElementById("mySideNav").style.width = "0px";
     }
+
+    logoutFacebook() {
+        this.logout()
+        console.log("logged out");
+    };
 
     fetchUserData() {
         return fetch('http://localhost:4000/api/login')
@@ -58,6 +72,7 @@ class Profile extends Component {
                 <a href="#" className="sideStyle">Groups</a>
                 <a href="#" className="sideStyle">Add Friend</a>
                 <a href="#" className="sideStyle">Settings</a>
+                <a href="/signup" onClick={ this.logoutFacebook.bind(this) }>Logout</a>
             </div>
 
             <div className="container profilePage">
@@ -82,7 +97,8 @@ class Profile extends Component {
 
                             </div>
                             <div className="editSave">
-                                <Link to="/EditProfile" className="edit">Edit Profile</Link>
+                                <Link to="/signup" className="edit">Edit Profile</Link>
+                                
                             </div>
 
                         </div>
@@ -128,4 +144,4 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+export default LoginHOC(configureLoginProps)(Profile);
