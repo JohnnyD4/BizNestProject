@@ -9,21 +9,21 @@ import axios from 'axios';
 class MyComponent extends React.Component {
     constructor(props) {
     super(props)
-   this.props.name = "John";
+   // this.props.name = "John";
     // this.status = this.props.fb.status
     // this.login = this.props.fb.login
     // this.logout = this.props.fb.logout
   }
     responseFacebook(response) {
         
-       document.getElementbyId("buttonSignUp").innerHTML = response.name;
+       // document.getElementbyId("buttonSignUp").innerHTML = response.name;
         // this.props.name = response.name; 
 
         axios.post('http://localhost:4000/facebook/login',  
         response)
 
         .then(function(result) {
-            // console.log(result);
+            console.log(result);
             var content = response;
 
 

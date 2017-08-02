@@ -16,6 +16,7 @@ import Tumblr from '../images/Tumblr.png';
 import './App.css';
 import Login from './Login';
 import LoginHOC from 'react-facebook-login-hoc';
+import axios from 'axios';
 
 const configureLoginProps = {
   scope: 'public_profile, email',
@@ -30,7 +31,7 @@ class Profile extends Component {
     constructor(props) {
         super(props);
         this.logout = this.props.fb.logout;
-        this.props.name = "John Davis";
+        this.props.name = "Johnis";
         this.props.image = "https://scontent.xx.fbcdn.net/v/t1.0-1/p50x50/10984026_1091095590904890_2071409968664339199_n.jpg?oh=05a00accaf293ffb8509867712996903&oe=5A00A2B8";
         this.props.workPhone = "954-258-4340";
         this.props.cellPhone = "954-258-4340";
@@ -76,15 +77,18 @@ class Profile extends Component {
         console.log("logged out");
     };
 
-    fetchUserData() {
-        return fetch('http://localhost:4000/api/login')
-          
-          .then((response) => {
-            console.log(response);
-          })
-          .catch((error) => {
-            console.error(error);
-          });
+    componentDidMount() {
+        console.log("obj");
+        axios.get('http://localhost:4000/facebook/login')
+        .then(function(response) {
+            console.log(response.data);
+            document.getElementById("userName").innerHTML = response.data.name;
+            document.getElementById("bio").innerHTML = response.data.biography;
+            document.getElementById("portfolio").setAttribute("src", response.data.portfolio);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     }
 
   render() {
@@ -118,7 +122,7 @@ class Profile extends Component {
                     <div className="col-sm-8">
                         <div className="profileInfo">
                             <div className="clientName">
-                                <h3 id="userName">{this.props.name}</h3>
+                                <h3 onClick={this.fetchUserData} id="userName">{this.props.name}</h3>
                             </div>
                             <div className="icons">
                                 <a href="#" onClick={this.showUserPhone}><img className="icon" alt="Phone Icon" id="phoneNumber" value={this.props.workPhone} src={phone}/></a>
@@ -141,8 +145,8 @@ class Profile extends Component {
                 <div className="row">
                     <div className="col-sm-12">
                         <h3><b>Bio</b></h3>
-                        <p>{this.props.bio}</p>
-                        <a href={this.props.portfolio}><p>Check out my portfolio</p></a>
+                        <p id="bio">{this.props.bio}</p>
+                        <a href={this.props.portfolio}><p id="portfolio">Check out my portfolio</p></a>
                     </div>
                 </div>
 
