@@ -30,6 +30,22 @@ class Profile extends Component {
     constructor(props) {
         super(props);
         this.logout = this.props.fb.logout;
+        this.props.name = "John Davis";
+        this.props.image = "https://scontent.xx.fbcdn.net/v/t1.0-1/p50x50/10984026_1091095590904890_2071409968664339199_n.jpg?oh=05a00accaf293ffb8509867712996903&oe=5A00A2B8";
+        this.props.workPhone = "954-258-4340";
+        this.props.cellPhone = "954-258-4340";
+        this.props.email = "johnsdavis95@gmail.com";
+        this.props.bio = "Hello this is my bio";
+        this.props.linkedin = "https://codepen.io/JohnDavis4/full/wJyjzP/";
+        this.props.facebook = "https://www.facebook.com/john.davis.18847876";
+        this.props.github = "https://codepen.io/JohnDavis4/full/wJyjzP/";
+        this.props.twitter = "https://codepen.io/JohnDavis4/full/wJyjzP/";
+        this.props.google = "https://codepen.io/JohnDavis4/full/wJyjzP/";
+        this.props.youtube = "https://codepen.io/JohnDavis4/full/wJyjzP/";
+        this.props.instagram = "https://codepen.io/JohnDavis4/full/wJyjzP/";
+        this.props.pinterest = "https://codepen.io/JohnDavis4/full/wJyjzP/";
+        this.props.tumblr = "https://codepen.io/JohnDavis4/full/wJyjzP/";
+
     }
 
     showSideNav(event) {
@@ -38,6 +54,21 @@ class Profile extends Component {
 
     hideSideNav(event) {
         document.getElementById("mySideNav").style.width = "0px";
+    }
+
+    showUserPhone() {
+        var phoneNumber = document.getElementById("phoneNumber").getAttribute("value");
+        console.log(phoneNumber);
+    }
+
+    showUserCellPhone() {
+        var cellNumber = document.getElementById("cellNumber").getAttribute("value");
+        console.log(cellNumber);
+    }
+
+    showUserEmail() {
+        var emailAddress = document.getElementById("emailAddress").getAttribute("value");
+        console.log(emailAddress);
     }
 
     logoutFacebook() {
@@ -79,7 +110,7 @@ class Profile extends Component {
                 <div className="row">
                     <div className="col-sm-4">
                         <div className="profilePic">
-                            <img className="profileImage" alt="Profile" src="http://cumbrianrun.co.uk/wp-content/uploads/2014/02/default-placeholder-300x300.png"/>
+                            <img className="profileImage" alt="Profile" src={this.props.image}/>
 
                         </div>
                     </div>
@@ -87,12 +118,12 @@ class Profile extends Component {
                     <div className="col-sm-8">
                         <div className="profileInfo">
                             <div className="clientName">
-                                <h3 id="userName">John Davis</h3>
+                                <h3 id="userName">{this.props.name}</h3>
                             </div>
                             <div className="icons">
-                                <a href="#"><img className="icon" alt="Phone Icon" src={phone}/></a>
-                                <a href="#"><img className="icon" alt="Text Icon" src={text}/></a>
-                                <a href="#"><img className="icon" alt="Email Icon" src={email}/></a>
+                                <a href="#" onClick={this.showUserPhone}><img className="icon" alt="Phone Icon" id="phoneNumber" value={this.props.workPhone} src={phone}/></a>
+                                <a href="#" onClick={this.showUserCellPhone}><img className="icon" alt="Text Icon" id="cellNumber" value={this.props.cellPhone} src={text}/></a>
+                                <a href="#" onClick={this.showUserEmail}><img className="icon" alt="Email Icon" id="emailAddress" value={this.props.email} src={email}/></a>
 
 
                             </div>
@@ -109,24 +140,24 @@ class Profile extends Component {
 
                 <div className="row">
                     <div className="col-sm-12">
-                        <h4>Bio</h4>
-                        <p>I am a web developer for Code For Kids. I have 4 years of experience. My main focus is on Front-end, but have experience in Back-end. </p>
-                        <a href="#"><p>Check out my portfolio</p></a>
+                        <h3><b>Bio</b></h3>
+                        <p>{this.props.bio}</p>
+                        <a href={this.props.portfolio}><p>Check out my portfolio</p></a>
                     </div>
                 </div>
 
                 <div className="row">
                     <div className="col-xs-3">
                         <ul className="list">
-                            <li className="social"><a href="#"><img className="icon" alt="LinkedIn" src={LinkedIn}/>LinkedIn</a></li>
-                            <li className="social"><a href="#"><img className="icon" alt="GitHub" src={GitHub}/>GitHub</a></li>
-                            <li className="social"><a href="#"><img className="icon" alt="Google+" src={Google}/>Google+</a></li>
-                            <li className="social"><a href="#"><img className="icon" alt="Twitter" src={Twitter}/>Twitter</a></li>
-                            <li className="social"><a href="#"><img className="icon" alt="Facebook" src={Facebook}/>Facebook</a></li>
-                            <li className="social"><a href="#"><img className="icon" alt="YouTube" src={Youtube}/>Youtube</a></li>
-                            <li className="social"><a href="#"><img className="icon" alt="Instagram" src={Instagram}/>Instagram</a></li>
-                            <li className="social"><a href="#"><img className="icon" alt="Pinterest" src={Pinterest}/>Pinterest</a></li>
-                            <li className="socail"><a href="#"><img className="icon" alt="Tumblr" src={Tumblr}/>Tumblr</a></li>
+                            <li className="social"><a href={this.props.linkedin}><img className="icon" alt="LinkedIn" src={LinkedIn}/>LinkedIn</a></li>
+                            <li className="social"><a href={this.props.github}><img className="icon" alt="GitHub" src={GitHub}/>GitHub</a></li>
+                            <li className="social"><a href={this.props.google}><img className="icon" alt="Google+" src={Google}/>Google+</a></li>
+                            <li className="social"><a href={this.props.twitter}><img className="icon" alt="Twitter" src={Twitter}/>Twitter</a></li>
+                            <li className="social"><a href={this.props.facebook}><img className="icon" alt="Facebook" src={Facebook}/>Facebook</a></li>
+                            <li className="social"><a href={this.props.youtube}><img className="icon" alt="YouTube" src={Youtube}/>Youtube</a></li>
+                            <li className="social"><a href={this.props.instagram}><img className="icon" alt="Instagram" src={Instagram}/>Instagram</a></li>
+                            <li className="social"><a href={this.props.pinterest}><img className="icon" alt="Pinterest" src={Pinterest}/>Pinterest</a></li>
+                            <li className="socail"><a href={this.props.tumblr}><img className="icon" alt="Tumblr" src={Tumblr}/>Tumblr</a></li>
                         </ul>
 
                     </div>
@@ -141,6 +172,7 @@ class Profile extends Component {
             </div>
         </div>    
     );
+
   }
 }
 

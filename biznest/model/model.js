@@ -6,6 +6,13 @@ var model = {
 
 			cb(res);
 		})
+	},
+
+	insertFacebookUser: function(name, profileImage, userID, accessToken, cb) {
+		orm.insertFacebookUser(name, profileImage, userID, accessToken, function(res) {
+
+			cb(res);
+		})
 	}
 }
 

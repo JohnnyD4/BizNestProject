@@ -5,7 +5,7 @@ var orm = {
 
 		var queryString = "SELECT * FROM `user` WHERE email_address = '" + emailAddress + "'";
 
-    queryString += " AND password = '" + password + "';";
+        queryString += " AND password = '" + password + "';";
 
 		// console.log("orm line 8", queryString);
 
@@ -32,7 +32,45 @@ var orm = {
 
 
 		})
-	} 
+	},
+
+    insertFacebookUser: function(name, profileImage, userID, accessToken, cb) {
+
+        var testUserQueryString = "SELECT * FROM `user` WHERE `user_ID` = '" + userID + "';";
+
+        connection.query(testUserQueryString, function(err, data) {
+
+            if (err) throw err;
+
+            try{
+
+                if (!data[0]) {
+
+                    var queryString = "INSERT INTO `user` (name, profile_image, user_ID, access_token)";
+
+                    queryString += "VALUES ('" + name + "', '" + profileImage + "', '" + userID + "', '" + accessToken + "');";
+
+                    connection.query(queryString, function(err, data) {
+
+                        if (err) throw err;
+
+                        cb(data);
+                    })
+                
+                } else {
+
+                    cb(data);
+                }
+
+            } catch(err) {
+
+                cb("data")
+            }
+        })
+
+        
+
+    } 
 }
 
 module.exports = orm;

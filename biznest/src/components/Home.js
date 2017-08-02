@@ -11,12 +11,12 @@ class Home extends Component {
 	      	<div className="entryPage">
 	      		<h1>BizNest</h1>
 	      		<img src="http://clipartix.com/wp-content/uploads/2016/10/Vintage-beehive-clipart-free-images.png" alt="bee"/>            
-	            <Link to="/Signup"><h1>Signup</h1></Link>
-	            <h1>Already have an account? <Link to="/Login">Login</Link></h1>
+	            <Link to="/Signup"><h1>Login with Facebook</h1></Link>
+	            
 	      	</div>
 	    </div>
     );
   }
-}
+} 
 
 export default Home;

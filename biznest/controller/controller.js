@@ -45,7 +45,7 @@ router.post("/facebook/login", function(req, res, next) {
 		req.body.accessToken, 
 		function(data) {
 			console.log(data);
-			res.send(data);
+			res.send(data);	
 		})
 })
 
