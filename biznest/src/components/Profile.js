@@ -20,7 +20,7 @@ import Login from './Login';
 class Profile extends Component {
     constructor(props) {
         super(props);
-        this.props.
+        // this.props.
     }
 
     showSideNav(event) {
