@@ -5,6 +5,7 @@ import FacebookLogin from 'react-facebook-login';
 import LoginHOC from 'react-facebook-login-hoc';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import './App.css';
  
 class MyComponent extends React.Component {
     
@@ -23,7 +24,8 @@ class MyComponent extends React.Component {
 
         .then(function(result) {
             console.log(result.data[0]);
-            var content = response;
+            document.getElementById("buttonSignUp").innerHTML = "Log in as " + result.data[0].name;
+            // var content = response;
 
 
             // if (content.data.length === 1) {
@@ -57,7 +59,7 @@ class MyComponent extends React.Component {
                     callback={this.responseFacebook}
                 /></Link>
             </div>    
-                <Link to="/profile"><button className="btn btn-primary" id="buttonSignUp">Login as {this.props.name}</button></Link>
+                <Link to="/profile"><button className="signBtn" id="buttonSignUp">Login as</button></Link>
         </div>    
     )
   }
