@@ -11,7 +11,7 @@ class Home extends Component {
 	      	<div className="entryPage">
 	      		<h1>BizNest</h1>
 	      		<img src="http://clipartix.com/wp-content/uploads/2016/10/Vintage-beehive-clipart-free-images.png" alt="bee"/>            
-	            <Link to="/Signup"><h1>Login with Facebook</h1></Link>
+	            <Link to="/Signup"><button className="btn btn-primary"><h4>Connect with Facebook</h4></button></Link>
 	            
 	      	</div>
 	    </div>

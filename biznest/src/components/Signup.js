@@ -7,13 +7,12 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
  
 class MyComponent extends React.Component {
+    
     constructor(props) {
-    super(props)
-   // this.props.name = "John";
-    // this.status = this.props.fb.status
-    // this.login = this.props.fb.login
-    // this.logout = this.props.fb.logout
-  }
+        super(props)
+   
+    }
+    
     responseFacebook(response) {
         
        // document.getElementbyId("buttonSignUp").innerHTML = response.name;
@@ -23,7 +22,7 @@ class MyComponent extends React.Component {
         response)
 
         .then(function(result) {
-            console.log(result);
+            console.log(result.data[0]);
             var content = response;
 
 
@@ -50,13 +49,15 @@ class MyComponent extends React.Component {
   render() {
     return (
         <div className="signupPage">
-            <Link to="/profile"><FacebookLogin
-                appId="490135684667453"
-                autoLoad={true}
-                fields="name,picture"
-                callback={this.responseFacebook}
-            /></Link>
-            <Link to="/profile"><button className="btn btn-primary" id="buttonSignUp">Login as {this.props.name}</button></Link>
+            <div className="facebookLogin">
+                <Link to="/profile"><FacebookLogin
+                    appId="490135684667453"
+                    autoLoad={true}
+                    fields="name,picture"
+                    callback={this.responseFacebook}
+                /></Link>
+            </div>    
+                <Link to="/profile"><button className="btn btn-primary" id="buttonSignUp">Login as {this.props.name}</button></Link>
         </div>    
     )
   }

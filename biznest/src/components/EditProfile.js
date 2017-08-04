@@ -14,8 +14,27 @@ import Instagram from '../images/Instagram.png';
 import Pinterest from '../images/Pinterest.png';
 import Tumblr from '../images/Tumblr.png';
 import './App.css';
+import axios from 'axios';
 
 class EditProfile extends Component {
+
+    componentDidMount() {
+        console.log("obj");
+        axios.get('http://localhost:4000/facebook/login')
+        .then(function(response) {
+            console.log(response.data);
+            document.getElementById("userName").setAttribute("value", response.data.name);
+            document.getElementById("bio").innerHTML = response.data.biography;
+            document.getElementById("portfolio").setAttribute("href", response.data.portfolio);
+            document.getElementById("phoneNumber").setAttribute("value", response.data.work_phone);
+            document.getElementById("profilePic").setAttribute("src", response.data.profile_image);
+            document.getElementById("facebook").setAttribute("href", response.data.facebook);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }
+
   render() {
     return (
         <div>
@@ -48,15 +67,15 @@ class EditProfile extends Component {
                         <div className="profileInfo">
                             <div className="clientName">
                                 <p>Your Name</p>
-                                <input type="text" id="editName" value="John Davis"/>
+                                <input type="text" id="userName" className="editName" value="John Davis"/>
                             </div>
                             <div className="icons">
                                 <a href="#"><img className="icon" alt="Phone Icon" src={phone}/></a>
-                                <input type="text" id="editName" value="954-434-4340"/>
+                                <input type="text" id="phoneNumber" className="editName" value="954-258-4340"/>
                                 <a href="#"><img className="icon" alt="Text Icon" src={text}/></a>
-                                <input type="text" id="editName" value="954-258-4340"/>
+                                <input type="text" className="editName" value="954-434-2140" />
                                 <a href="#"><img className="icon" alt="Email Icon" src={email}/></a>
-                                <input type="text" id="editName" value="johnsdavis95@gmail.com"/>
+                                <input type="text" className="editName" value="JohnSDavis95@gmail.com" />
 
 
                             </div>
@@ -73,23 +92,23 @@ class EditProfile extends Component {
                 <div className="row">
                     <div className="col-sm-12">
                         <h4>Bio</h4>
-                        <textarea type="text" id="editName" className="text-area" value="I am a web developer for Code For Kids. I have 4 years of experience. My main focus is on Front-end, but have experience in Back-end."/>
-                        <p>portfolio link <input type="text" id="editName" value="http://codepen.com"/></p>
+                        <textarea type="text" id="bio" className="editTextArea" className="text-area" value="I am a web developer for Code For Kids. I have 4 years of experience. My main focus is on Front-end, but have experience in Back-end."/>
+                        <p>portfolio link <input type="text" className="editName" value="http://codepen.com"/></p>
                     </div>
                 </div>
 
                 <div className="row">
                     <div className="col-xs-3">
                         <ul className="list">
-                            <li className="social"><a href="#"><img className="icon" alt="LinkedIn" src={LinkedIn}/>LinkedIn</a><input type="text" id="editName"/></li>
-                            <li className="social"><a href="#"><img className="icon" alt="GitHub" src={GitHub}/>GitHub</a><input type="text" id="editName"/></li>
-                            <li className="social"><a href="#"><img className="icon" alt="Google+" src={Google}/>Google+</a><input type="text" id="editName"/></li>
-                            <li className="social"><a href="#"><img className="icon" alt="Twitter" src={Twitter}/>Twitter</a><input type="text" id="editName"/></li>
-                            <li className="social"><a href="#"><img className="icon" alt="Facebook" src={Facebook}/>Facebook</a><input type="text" id="editName"/></li>
-                            <li className="social"><a href="#"><img className="icon" alt="Youtube" src={Youtube}/>Youtube</a><input type="text" id="editName"/></li>
-                            <li className="social"><a href="#"><img className="icon" alt="Instagram" src={Instagram}/>Instagram</a><input type="text" id="editName"/></li>
-                            <li className="social"><a href="#"><img className="icon" alt="Pinterest" src={Pinterest}/>Pinterest</a><input type="text" id="editName"/></li>
-                            <li className="socail"><a href="#"><img className="icon" alt="Tumblr" src={Tumblr}/>Tumblr</a><input type="text" id="editName"/></li>
+                            <li className="social"><a href="#"><img className="icon" alt="LinkedIn" src={LinkedIn}/>LinkedIn</a><input type="text" className="editName"/></li>
+                            <li className="social"><a href="#"><img className="icon" alt="GitHub" src={GitHub}/>GitHub</a><input type="text" className="editName"/></li>
+                            <li className="social"><a href="#"><img className="icon" alt="Google+" src={Google}/>Google+</a><input type="text" className="editName"/></li>
+                            <li className="social"><a href="#"><img className="icon" alt="Twitter" src={Twitter}/>Twitter</a><input type="text" className="editName"/></li>
+                            <li className="social"><a href="#"><img className="icon" alt="Facebook" src={Facebook}/>Facebook</a><input type="text" className="editName"/></li>
+                            <li className="social"><a href="#"><img className="icon" alt="Youtube" src={Youtube}/>Youtube</a><input type="text" className="editName"/></li>
+                            <li className="social"><a href="#"><img className="icon" alt="Instagram" src={Instagram}/>Instagram</a><input type="text" className="editName"/></li>
+                            <li className="social"><a href="#"><img className="icon" alt="Pinterest" src={Pinterest}/>Pinterest</a><input type="text" className="editName"/></li>
+                            <li className="socail"><a href="#"><img className="icon" alt="Tumblr" src={Tumblr}/>Tumblr</a><input type="text" className="editName"/></li>
                         </ul>
 
                     </div>

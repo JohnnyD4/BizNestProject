@@ -1,11 +1,9 @@
 var connection = require("../config/connection.js")['connection'];
 
 var orm = {
-	testing: function(emailAddress, password, cb) {
+	testing: function(userID, cb) {
 
-		var queryString = "SELECT * FROM `user` WHERE email_address = '" + emailAddress + "'";
-
-        queryString += " AND password = '" + password + "';";
+		var queryString = "SELECT * FROM `user` WHERE user_ID = '" + userID + "';";
 
 		// console.log("orm line 8", queryString);
 

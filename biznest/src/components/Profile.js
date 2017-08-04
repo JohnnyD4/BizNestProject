@@ -31,21 +31,21 @@ class Profile extends Component {
     constructor(props) {
         super(props);
         this.logout = this.props.fb.logout;
-        this.props.name = "Johnis";
-        this.props.image = "https://scontent.xx.fbcdn.net/v/t1.0-1/p50x50/10984026_1091095590904890_2071409968664339199_n.jpg?oh=05a00accaf293ffb8509867712996903&oe=5A00A2B8";
-        this.props.workPhone = "954-258-4340";
-        this.props.cellPhone = "954-258-4340";
-        this.props.email = "johnsdavis95@gmail.com";
-        this.props.bio = "Hello this is my bio";
-        this.props.linkedin = "https://codepen.io/JohnDavis4/full/wJyjzP/";
-        // this.props.facebook = "https://www.facebook.com/john.davis.18847876";
-        this.props.github = "https://codepen.io/JohnDavis4/full/wJyjzP/";
-        this.props.twitter = "https://codepen.io/JohnDavis4/full/wJyjzP/";
-        this.props.google = "https://codepen.io/JohnDavis4/full/wJyjzP/";
-        this.props.youtube = "https://codepen.io/JohnDavis4/full/wJyjzP/";
-        this.props.instagram = "https://codepen.io/JohnDavis4/full/wJyjzP/";
-        this.props.pinterest = "https://codepen.io/JohnDavis4/full/wJyjzP/";
-        this.props.tumblr = "https://codepen.io/JohnDavis4/full/wJyjzP/";
+        // this.props.name = "Johnis";
+        // this.props.image = "https://scontent.xx.fbcdn.net/v/t1.0-1/p50x50/10984026_1091095590904890_2071409968664339199_n.jpg?oh=05a00accaf293ffb8509867712996903&oe=5A00A2B8";
+        // this.props.workPhone = "954-258-4340";
+        // this.props.cellPhone = "954-258-4340";
+        // this.props.email = "johnsdavis95@gmail.com";
+        // this.props.bio = "Hello this is my bio";
+        // this.props.linkedin = "https://codepen.io/JohnDavis4/full/wJyjzP/";
+        // // this.props.facebook = "https://www.facebook.com/john.davis.18847876";
+        // this.props.github = "https://codepen.io/JohnDavis4/full/wJyjzP/";
+        // this.props.twitter = "https://codepen.io/JohnDavis4/full/wJyjzP/";
+        // this.props.google = "https://codepen.io/JohnDavis4/full/wJyjzP/";
+        // this.props.youtube = "https://codepen.io/JohnDavis4/full/wJyjzP/";
+        // this.props.instagram = "https://codepen.io/JohnDavis4/full/wJyjzP/";
+        // this.props.pinterest = "https://codepen.io/JohnDavis4/full/wJyjzP/";
+        // this.props.tumblr = "https://codepen.io/JohnDavis4/full/wJyjzP/";
 
     }
 
@@ -110,7 +110,7 @@ class Profile extends Component {
                 <a href="#" className="sideStyle">Groups</a>
                 <a href="#" className="sideStyle">Add Friend</a>
                 <a href="#" className="sideStyle">Settings</a>
-                <a href="/signup" onClick={ this.logoutFacebook.bind(this) }>Logout</a>
+                <a href="/" onClick={ this.logoutFacebook.bind(this) }>Logout</a>
             </div>
 
             <div className="container profilePage">
@@ -135,7 +135,7 @@ class Profile extends Component {
 
                             </div>
                             <div className="editSave">
-                                <Link to="/signup" className="edit">Edit Profile</Link>
+                                <Link to="/EditProfile" className="edit">Edit Profile</Link>
                                 
                             </div>
 
