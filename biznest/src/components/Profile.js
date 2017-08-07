@@ -82,6 +82,7 @@ class Profile extends Component {
         axios.get('http://localhost:4000/facebook/login')
         .then(function(response) {
             console.log(response.data);
+            
             document.getElementById("userName").innerHTML = response.data.name;
             document.getElementById("bio").innerHTML = response.data.biography;
             document.getElementById("portfolio").setAttribute("href", response.data.portfolio);
@@ -125,7 +126,7 @@ class Profile extends Component {
                     <div className="col-sm-8">
                         <div className="profileInfo">
                             <div className="clientName">
-                                <h3 onClick={this.fetchUserData} id="userName">{this.props.name}</h3>
+                                <h3 onClick={this.fetchUserData} id="userName"></h3>
                             </div>
                             <div className="icons">
                                 <a href="#" ><img className="icon" alt="Phone Icon" id="phoneNumber" onClick={this.showUserPhone} src={phone}/></a>

@@ -9,6 +9,7 @@
     "express": "^4.15.3",
     "express-mysql-session": "^1.2.1",
     "express-session": "^1.15.4",
+    "localStorage": "^1.0.3",
     "method-override": "^2.3.9",
     "mysql": "^2.14.0",
     "react": "^15.6.1",

@@ -11,30 +11,24 @@ class MyComponent extends React.Component {
     
     constructor(props) {
         super(props)
-   
+        
     }
     
     responseFacebook(response) {
-        
+        // var test = this;
        // document.getElementbyId("buttonSignUp").innerHTML = response.name;
         // this.props.name = response.name; 
-
-        axios.post('http://localhost:4000/facebook/login',  
+        console.log("response", response.userID);
+        axios.post('http://localhost:4000/facebook/login/' + response.userID,  
         response)
+        
 
         .then(function(result) {
-            console.log(result.data[0]);
+            // console.log(result.data[0]);
             document.getElementById("buttonSignUp").innerHTML = "Log in as " + result.data[0].name;
-            // var content = response;
+            // document.getElementbyId("linker").setAttri
+            var userID = response.userID
 
-
-            // if (content.data.length === 1) {
-            //     console.log(content.data[0].first_name);
-            //     user.setState({userData: content.data[0]});
-            //     this.props.callbackFromParent(content.data[0]);
-            // } else {
-            //     console.log(content.data);
-            // }
         })
 
         .catch(function(err) {
@@ -59,7 +53,7 @@ class MyComponent extends React.Component {
                     callback={this.responseFacebook}
                 /></Link>
             </div>    
-                <Link to="/profile"><button className="signBtn" id="buttonSignUp">Login as</button></Link>
+                <Link id="linker" to={{pathname: 'profile/1805067389507703'}}><button className="signBtn" id="buttonSignUp">Login as</button></Link>
         </div>    
     )
   }
@@ -67,61 +61,3 @@ class MyComponent extends React.Component {
  
 export default MyComponent;
 
-// import LoginHOC from 'react-facebook-login-hoc';
- 
-// const configureLoginProps = {
-//   scope: 'public_profile, email',
-//   xfbml: false,
-//   cookie: false,
-//   version: 2.6,
-//   language: 'en_US',
-//   appId: '490135684667453'
-// }
- 
-// class App extends React.Component {
-//   constructor(props) {
-//     super(props)
- 
-//     this.status = this.props.fb.status
-//     this.login = this.props.fb.login
-//     this.logout = this.props.fb.logout
-//   }
-//   getStatus(response) {
-//     if (response.authResponse) {
-//        console.log('Welcome, Fetching info');
-//        // fb.api('/me', function(response) {
-//        //       console.log()
-//        // })
-//       this.responseApi.call(this, response.authResponse)
-//     }
-//   }
-//   responseApi(res) {
-//     console.log('token:', res.accessToken)
-//     console.log('user:', res);
-//   }
-//   checkLoginState() {
-//     this.status(this.getStatus.bind(this))
-
-//   };
-//   loginFacebook() {
-//     this.login(this.getStatus.bind(this))
-
-//   }
-//   logoutFacebook() {
-//     this.logout()
-//     console.log("Logged out");
-//   }
-//   render() {
-//     return (
-//         <div>
-//             <button onClick={ this.checkLoginState.bind(this) }>Get Facebook Login Status</button>
-//             <button onClick={ this.loginFacebook.bind(this) }>Facebook Login</button>
-//             <button onClick={ this.logoutFacebook.bind(this) }>Facebook Logout</button>
-//         </div>
-//     );
-//   }
-// }
- 
-// export default LoginHOC(configureLoginProps)(App);
-// 
-// 

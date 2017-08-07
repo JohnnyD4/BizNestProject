@@ -12,13 +12,13 @@ import registerServiceWorker from './registerServiceWorker';
 
 render((
 	<BrowserRouter>
-		<App>
+		<App color="green">
 			<switch>
 				<Route exact path="/" component={Home}/>
 				{/* <Route path="/Home" component={Home}/> */}
 				<Route path="/Signup" component={Signup}/>
 				<Route path="/Login" component={Login}/>
-				<Route path="/Profile" component={Profile}/>
+				<Route name="Profile" path="/Profile/:userID" component={Profile}/>
 				<Route path="/EditProfile" component={EditProfile}/>
 			</switch>
 		</App>	
