@@ -20,37 +20,109 @@ class EditProfile extends Component {
 
     componentDidMount() {
         console.log("obj");
-        axios.get('http://localhost:4000/facebook/login')
-        .then(function(response) {
-            console.log(response.data);
-            document.getElementById("userName").setAttribute("value", response.data.name);
-            document.getElementById("bio").innerHTML = response.data.biography;
-            document.getElementById("portfolio").setAttribute("href", response.data.portfolio);
-            document.getElementById("phoneNumber").setAttribute("value", response.data.work_phone);
-            document.getElementById("profilePic").setAttribute("src", response.data.profile_image);
-            document.getElementById("facebook").setAttribute("href", response.data.facebook);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+        if(this.props.location.search === "") {
+
+            axios.post('http://localhost:4000/facebook/profile',  
+            {userID: this.props.location.pathname})
+            
+
+            .then(function(result) {
+                console.log(result.data[0]);
+                var userData = result.data[0];
+                console.log(userData.name);
+                document.getElementById("userName").setAttribute("placeholder", userData.name);
+                // document.getElementById("userName").innerHTML = userData.name;
+                // document.getElementById("bio").innerHTML = userData.biography;
+                // document.getElementById("portfolio").setAttribute("href", userData.portfolio);
+                // document.getElementById("phoneNumber").setAttribute("value", userData.work_phone);
+                // document.getElementById("profilePic").setAttribute("src", userData.profile_image);
+                // document.getElementById("facebook").setAttribute("href", userData.facebook);
+
+            })
+
+            .catch(function(err) {
+                if (err) throw err;
+            })
+        } else {
+            axios.post('http://localhost:4000/facebook/profile',  
+            {userID: this.props.location.search})
+            
+
+            .then(function(result) {
+                console.log(result.data[0]);
+                var userData = result.data[0];
+                console.log(userData.name);
+                  
+                document.getElementById("userName").setAttribute("placeholder", userData.name);
+                // document.getElementById("bio").innerHTML = userData.biography;
+                // document.getElementById("portfolio").setAttribute("href", userData.portfolio);
+                // document.getElementById("phoneNumber").setAttribute("value", userData.work_phone);
+                // document.getElementById("profilePic").setAttribute("src", userData.profile_image);
+                // document.getElementById("facebook").setAttribute("href", userData.facebook);
+            })
+
+            .catch(function(err) {
+                if (err) throw err;
+            })
+        }
+        // axios.get('http://localhost:4000/facebook/login')
+        // .then(function(response) {
+        //     console.log(response.data);
+        //     document.getElementById("userName").setAttribute("value", response.data.name);
+        //     document.getElementById("bio").innerHTML = response.data.biography;
+        //     document.getElementById("portfolio").setAttribute("href", response.data.portfolio);
+        //     document.getElementById("phoneNumber").setAttribute("value", response.data.work_phone);
+        //     document.getElementById("profilePic").setAttribute("src", response.data.profile_image);
+        //     document.getElementById("facebook").setAttribute("href", response.data.facebook);
+        // })
+        // .catch(function (error) {
+        //     console.log(error);
+        // });
     }
 
+    showSideNav(event) {
+        document.getElementById("mySideNav").style.width = "250px";
+    }
+
+    hideSideNav(event) {
+        document.getElementById("mySideNav").style.width = "0px";
+    }
+
+    logoutFacebook() {
+        this.logout()
+        console.log("logged out");
+    };
+
   render() {
+    var path;
+    var route;
+    var router;
+    if (this.props.location.search === "") {
+        path = this.props.location.pathname;
+        console.log(path.split("/").reverse());
+        console.log("pathname", this.props.location.pathname);
+        router = path.split("/").reverse();
+        route = router[0];
+    } else {
+        route = this.props.location.search;
+        console.log("search", this.props.location.search);
+    }
     return (
         <div>
             <div className="navbar">
-                <span id="hamburger">&#9776;</span>
+                <span onClick={this.showSideNav} id="hamburger">&#9776;</span>
                 <h1>Edit</h1>
             </div>
 
             <div className="sideNav" id="mySideNav">
-                <a href="javascript:void(0)" id="closeNavBtn">&times;</a>
+                <a href="javascript:void(0)" onClick={this.hideSideNav} id="closeNavBtn">&times;</a>
                 <input type="text" id="searchBar" placeholder="Search in Contacts"/>
                 <a href="#" id="sideName" className="sideStyle"></a>
-                <a href="#" className="sideStyle">Contacts</a>
+                <Link to="/Contacts" className="sideStyle">Contacts</Link>
                 <a href="#" className="sideStyle">Groups</a>
                 <a href="#" className="sideStyle">Add Friend</a>
                 <a href="#" className="sideStyle">Settings</a>
+                <a href="/" onClick={ this.logoutFacebook.bind(this) }>Logout</a>
             </div>
 
             <div className="container profilePage">
@@ -67,7 +139,7 @@ class EditProfile extends Component {
                         <div className="profileInfo">
                             <div className="clientName">
                                 <p>Your Name</p>
-                                <input type="text" id="userName" className="editName" value="John Davis"/>
+                                <input type="text" id="userName" className="editName"/>
                             </div>
                             <div className="icons">
                                 <a href="#"><img className="icon" alt="Phone Icon" src={phone}/></a>
@@ -80,7 +152,7 @@ class EditProfile extends Component {
 
                             </div>
                             <div className="editSave">
-                                <Link to="/profile" id="editBtn" className="edit">Save</Link>
+                                <Link to={{pathname: "/profile/" + route}} id="editBtn" className="edit">Save</Link>
                             </div>
 
                         </div>

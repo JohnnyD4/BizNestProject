@@ -10,18 +10,30 @@ import './App.css';
 class MyComponent extends React.Component {
     
     constructor(props) {
-        super(props)
-        
+        super(props);
+
+        this.state = {
+          user: ""
+        };
+
+        this.responseFacebook = this.responseFacebook.bind(this);
     }
-    
+
     responseFacebook(response) {
-        // var test = this;
+        this.setState({
+            user: response.userID
+        })
        // document.getElementbyId("buttonSignUp").innerHTML = response.name;
         // this.props.name = response.name; 
-        console.log("response", response.userID);
-        axios.post('http://localhost:4000/facebook/login/' + response.userID,  
+        console.log(this.state.user);
+        // console.log("response", response.userID);
+        // test = response.userID;
+        // console.log(test);
+        // Object.preventExtensions(test.user);
+        axios.post('http://localhost:4000/facebook/login',  
         response)
         
+
 
         .then(function(result) {
             // console.log(result.data[0]);
@@ -53,7 +65,8 @@ class MyComponent extends React.Component {
                     callback={this.responseFacebook}
                 /></Link>
             </div>    
-                <Link id="linker" to={{pathname: 'profile/1805067389507703'}}><button className="signBtn" id="buttonSignUp">Login as</button></Link>
+                <Link id="linker" to={{pathname: 'profile/?' + this.state.user}}><button className="signBtn" id="buttonSignUp">Login as</button></Link>
+                
         </div>    
     )
   }

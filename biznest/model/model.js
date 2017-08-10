@@ -13,6 +13,13 @@ var model = {
 
 			cb(res);
 		})
+	},
+
+	getUserProfile: function(userID, cb) {
+		orm.getUserProfile(userID, function(res) {
+
+			cb(res);
+		})
 	}
 }
 

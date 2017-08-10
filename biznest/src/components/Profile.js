@@ -78,24 +78,84 @@ class Profile extends Component {
     };
 
     componentDidMount() {
-        console.log("obj");
-        axios.get('http://localhost:4000/facebook/login')
-        .then(function(response) {
-            console.log(response.data);
+        // console.log(this.props.location.search);
+        console.log(this.props);
+
+         if(this.props.location.search === "") {
+
+            axios.post('http://localhost:4000/facebook/profile',  
+            {userID: this.props.location.pathname})
             
-            document.getElementById("userName").innerHTML = response.data.name;
-            document.getElementById("bio").innerHTML = response.data.biography;
-            document.getElementById("portfolio").setAttribute("href", response.data.portfolio);
-            document.getElementById("phoneNumber").setAttribute("value", response.data.work_phone);
-            document.getElementById("profilePic").setAttribute("src", response.data.profile_image);
-            document.getElementById("facebook").setAttribute("href", response.data.facebook);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+
+            .then(function(result) {
+                console.log(result.data[0]);
+                var userData = result.data[0];
+                console.log(userData.name);
+                document.getElementById("userName").innerHTML = userData.name;
+                document.getElementById("bio").innerHTML = userData.biography;
+                document.getElementById("portfolio").setAttribute("href", userData.portfolio);
+                document.getElementById("phoneNumber").setAttribute("value", userData.work_phone);
+                document.getElementById("profilePic").setAttribute("src", userData.profile_image);
+                document.getElementById("facebook").setAttribute("href", userData.facebook);
+
+            })
+
+            .catch(function(err) {
+                if (err) throw err;
+            })
+        } else {
+            axios.post('http://localhost:4000/facebook/profile',  
+            {userID: this.props.location.search})
+            
+
+            .then(function(result) {
+                console.log(result.data[0]);
+                var userData = result.data[0];
+                console.log(userData.name);
+                  
+                document.getElementById("userName").innerHTML = userData.name;
+                document.getElementById("bio").innerHTML = userData.biography;
+                document.getElementById("portfolio").setAttribute("href", userData.portfolio);
+                document.getElementById("phoneNumber").setAttribute("value", userData.work_phone);
+                document.getElementById("profilePic").setAttribute("src", userData.profile_image);
+                document.getElementById("facebook").setAttribute("href", userData.facebook);
+            })
+
+            .catch(function(err) {
+                if (err) throw err;
+            })
+        }
+        // axios.get('http://localhost:4000/facebook/login')
+        // .then(function(response) {
+        //     console.log(response.data);
+
+            
+        //     document.getElementById("bio").innerHTML = response.data.biography;
+        //     document.getElementById("portfolio").setAttribute("href", response.data.portfolio);
+        //     document.getElementById("phoneNumber").setAttribute("value", response.data.work_phone);
+        //     document.getElementById("profilePic").setAttribute("src", response.data.profile_image);
+        //     document.getElementById("facebook").setAttribute("href", response.data.facebook);
+        // })
+        // .catch(function (error) {
+        //     console.log(error);
+        // });
     }
 
-  render() {
+  render() {  
+    
+    var path;
+    var route;
+    var router;
+    if (this.props.location.search === "") {
+        path = this.props.location.pathname;
+        console.log(path.split("/").reverse());
+        console.log("pathname", this.props.location.pathname);
+        router = path.split("/").reverse();
+        route = router[0];
+    } else {
+        route = this.props.location.search;
+        console.log("search", this.props.location.search);
+    }
     return (
         <div>
             <div className="navbar">
@@ -107,7 +167,7 @@ class Profile extends Component {
                 <a href="javascript:void(0)" onClick={this.hideSideNav} id="closeNavBtn">&times;</a>
                 <input type="text" id="searchBar" placeholder="Search in Contacts"/>
                 <a href="#" id="sideName" className="sideStyle"></a>
-                <a href="#" className="sideStyle">Contacts</a>
+                <Link to={{pathname: "/Contacts/" + route}} className="sideStyle">Contacts</Link>
                 <a href="#" className="sideStyle">Groups</a>
                 <a href="#" className="sideStyle">Add Friend</a>
                 <a href="#" className="sideStyle">Settings</a>
@@ -136,7 +196,7 @@ class Profile extends Component {
 
                             </div>
                             <div className="editSave">
-                                <Link to="/EditProfile" className="edit">Edit Profile</Link>
+                                <Link to={{pathname: "/editProfile/" + route}} className="edit">Edit Profile</Link>
                                 
                             </div>
 

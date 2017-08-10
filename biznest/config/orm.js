@@ -64,11 +64,21 @@ var orm = {
 
                 cb("data")
             }
+        })   
+
+    },
+
+    getUserProfile: function(userID, cb) {
+
+        var testUserQueryString = "SELECT * FROM `user` WHERE `user_ID` = '" + userID + "';";
+
+        connection.query(testUserQueryString, function(err, data) {
+
+            if (err) throw err;
+
+            cb(data);
         })
-
-        
-
-    } 
+    }     
 }
 
 module.exports = orm;

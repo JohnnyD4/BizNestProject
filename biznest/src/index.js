@@ -8,18 +8,20 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 import Profile from './components/Profile';
 import EditProfile from './components/EditProfile';
+import Contacts from './components/Contacts';
 import registerServiceWorker from './registerServiceWorker';
 
 render((
 	<BrowserRouter>
-		<App color="green">
+		<App>
 			<switch>
 				<Route exact path="/" component={Home}/>
 				{/* <Route path="/Home" component={Home}/> */}
 				<Route path="/Signup" component={Signup}/>
 				<Route path="/Login" component={Login}/>
-				<Route name="Profile" path="/Profile/:userID" component={Profile}/>
-				<Route path="/EditProfile" component={EditProfile}/>
+				<Route name="Profile/:userID" path="/Profile" component={Profile}/>
+				<Route name="EditProfile" path="/EditProfile" component={EditProfile}/>
+				<Route name="Contacts/:userID" path="/Contacts" component={Contacts}/>
 			</switch>
 		</App>	
 	</BrowserRouter>

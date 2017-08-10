@@ -34,14 +34,31 @@ router.post("/api/login", function(req, res, next) {
 	
 })
 
-router.post("/facebook/login/:userID", function(req, res, next) {
+router.post("/facebook/profile", function(req, res, next) {
+	var userID = req.body.userID;
+
+	var splitID = userID.split("?");
+	console.log("split", splitID[1]);
+	model.getUserProfile(
+		splitID[1],
+		function(data) {
+			console.log(data);
+			res.send(data);
+		})
+
+})
+
+router.post("/facebook/login", function(req, res, next) {
 	console.log("facebook login");
+	req.session.UserID = req.body.userID;
+	// console.log("req.session above",req.session);
+
 	// req.session.userID = "";
 	// console.log(req.body.name);
 	// console.log(req.body.picture.data.url);
 	// console.log("userID:", req.body.userID);
 	// console.log("accessToken:", req.body.accessToken);
-console.log("params", req.params.userID);
+// console.log("params", req.params.userID);
 	model.insertFacebookUser(
 		req.body.name,
 		req.body.picture.data.url,
@@ -50,30 +67,30 @@ console.log("params", req.params.userID);
 		function(data) {
 			// console.log(data[0].user_ID);
 			// testUserID = data.user_ID;
-			req.session.UserID = data[0].user_ID;
+			// req.session.UserID = data[0].user_ID;
 			localStorage.setItem('user', data[0].user_ID);
 			
 
 			res.send(data);	
 		})
 	console.log("req.session",req.session);
-		console.log(localStorage.getItem('user'));
+		// console.log(localStorage.getItem('user'));
 })
 
 router.get("/facebook/login", function(req, res, next) {
 	console.log("facebook get ");
 
-
+	console.log(req.params.userID);
 	console.log("get sesstion", req.session);
 	if(req.session.userID) {
 		console.log("user ID", req.session.userID);
 		res.send("hello")
 	}
 	
-	// model.testing("1805067389507703", function(data) {
-	// 	console.log(data[0]);
-	// 	res.send(data[0]);
-	// })
+	model.testing("1805067389507703", function(data) {
+		console.log(data[0]);
+		res.send(data[0]);
+	})
 
 	// var data = {
  //    id: 4,
