@@ -78,6 +78,45 @@ var orm = {
 
             cb(data);
         })
+    },
+
+    addFriend: function(friendID, userID, cb) {
+
+        var queryString = "SELECT `name` FROM `user` WHERE `user_ID` = '" + friendID + "';";
+
+        connection.query(queryString, function(err, data) {
+
+            if(err) throw err;
+
+
+            console.log(data[0].name);
+
+            // cb(data);
+            try{
+
+                if (data[0].name) {
+
+                    var insertQueryString = "UPDATE `user` SET `contacts` = "
+                    insertQueryString += "VALUES ('" + name + "', '" + profileImage + "', '" + userID + "', '" + accessToken + "');";
+
+                    connection.query(insertQueryString, function(err, data) {
+
+                        if (err) throw err;
+
+                        cb(data);
+                    })
+                
+                } else {
+
+                    cb(data);
+                }
+
+            } catch(err) {
+
+                cb("data")
+            }
+
+        })
     }     
 }
 

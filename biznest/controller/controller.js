@@ -30,8 +30,7 @@ router.post("/api/login", function(req, res, next) {
 		console.log(data);
 		res.send(data);
 		// res.redirect("/profile");
-	})
-	
+	})	
 })
 
 router.post("/facebook/profile", function(req, res, next) {
@@ -50,31 +49,17 @@ router.post("/facebook/profile", function(req, res, next) {
 
 router.post("/facebook/login", function(req, res, next) {
 	console.log("facebook login");
-	req.session.UserID = req.body.userID;
-	// console.log("req.session above",req.session);
 
-	// req.session.userID = "";
-	// console.log(req.body.name);
-	// console.log(req.body.picture.data.url);
-	// console.log("userID:", req.body.userID);
-	// console.log("accessToken:", req.body.accessToken);
-// console.log("params", req.params.userID);
 	model.insertFacebookUser(
 		req.body.name,
 		req.body.picture.data.url,
 		req.body.userID,
 		req.body.accessToken, 
 		function(data) {
-			// console.log(data[0].user_ID);
-			// testUserID = data.user_ID;
-			// req.session.UserID = data[0].user_ID;
-			localStorage.setItem('user', data[0].user_ID);
-			
 
 			res.send(data);	
 		})
-	console.log("req.session",req.session);
-		// console.log(localStorage.getItem('user'));
+
 })
 
 router.get("/facebook/login", function(req, res, next) {
@@ -128,12 +113,19 @@ router.get("/api/login", function(req, res, next) {
 		emailAddress: data[0].email_address
 	}
 	res.send(data);
-	})
-	
+	})	
 })
 
-router.get("/profile", function(req, res) {
-	console.log("profile");
+router.post("/addFriend", function(req, res) {
+	console.log(req.body);
+
+	model.addFriend(
+		req.body.friendID,
+		req.body.userID, 
+		function(data) {
+			console.log(data);
+			res.send(data);
+		})
 })
 
 

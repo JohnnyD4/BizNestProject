@@ -65,7 +65,13 @@ class MyComponent extends React.Component {
                     callback={this.responseFacebook}
                 /></Link>
             </div>    
+            <div className="entryPage">
+                <h1>BizNest</h1>
+                <img src="http://clipartix.com/wp-content/uploads/2016/10/Vintage-beehive-clipart-free-images.png" alt="bee"/>            
                 <Link id="linker" to={{pathname: 'profile/?' + this.state.user}}><button className="signBtn" id="buttonSignUp">Login as</button></Link>
+                
+            </div>
+                
                 
         </div>    
     )

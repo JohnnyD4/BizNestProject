@@ -169,7 +169,7 @@ class Profile extends Component {
                 <a href="#" id="sideName" className="sideStyle"></a>
                 <Link to={{pathname: "/Contacts/" + route}} className="sideStyle">Contacts</Link>
                 <a href="#" className="sideStyle">Groups</a>
-                <a href="#" className="sideStyle">Add Friend</a>
+                <Link to={{pathname: "/AddFriend/" + route}} className="sideStyle">Add Friend</Link>
                 <a href="#" className="sideStyle">Settings</a>
                 <a href="/" onClick={ this.logoutFacebook.bind(this) }>Logout</a>
             </div>

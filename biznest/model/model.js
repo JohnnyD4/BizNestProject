@@ -20,6 +20,13 @@ var model = {
 
 			cb(res);
 		})
+	},
+
+	addFriend: function(friendID, userID, cb) {
+		orm.addFriend(friendID, userID, function(res) {
+
+			cb(res);
+		})
 	}
 }
 
