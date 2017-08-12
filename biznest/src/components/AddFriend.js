@@ -38,7 +38,7 @@ class AddFriend extends Component {
     }
 
     AddFriend() {
-        console.log("obj");
+        // console.log("obj");
         var path;
         var route;
         var removeQ;
@@ -61,7 +61,7 @@ class AddFriend extends Component {
 
         axios.post('http://localhost:4000/addFriend', 
         {
-            friendID: "107233813316900",
+            friendID: "1805067389507703",
             userID: route
         })
 
@@ -83,7 +83,7 @@ class AddFriend extends Component {
             .then(function(result) {
                 console.log(result.data[0]);
                 var userData = result.data[0];
-               console.log(userData.contacts.split(','));
+               // console.log(userData.contacts.split(','));
                // document.getElementById("contactList").innerHTML = userData.contacts.split(',');
 
             })
@@ -99,7 +99,7 @@ class AddFriend extends Component {
             .then(function(result) {
                 console.log(result.data[0]);
                 var userData = result.data[0];
-                var userList = userData.contacts.split(',')
+                // var userList = userData.contacts.split(',')
                 
                  
 
@@ -138,10 +138,9 @@ class AddFriend extends Component {
                 <a href="javascript:void(0)" onClick={this.hideSideNav} id="closeNavBtn">&times;</a>
                 <input type="text" id="searchBar" placeholder="Search in Contacts"/>
                 <a href="#" id="sideName" className="sideStyle"></a>
-                <Link to="/Profile" className="sideStyle">Profile</Link>
-                <a href="#" className="sideStyle">Groups</a>
-                <a href="#" className="sideStyle">Add Friend</a>
-                <a href="#" className="sideStyle">Settings</a>
+                <Link to={{pathname: "/profile/" + route}} className="sideStyle">Profile</Link>
+                <Link to={{pathname: "/Contacts/" + route}} className="sideStyle">Contacts</Link>
+                <Link to={{pathname: "/AddFriend/" + route}} className="sideStyle">Add Friend</Link>
                 <a href="/" onClick={ this.logoutFacebook.bind(this) }>Logout</a>
             </div>
 

@@ -96,15 +96,64 @@ var orm = {
 
                 if (data[0].name) {
 
-                    var insertQueryString = "UPDATE `user` SET `contacts` = "
-                    insertQueryString += "VALUES ('" + name + "', '" + profileImage + "', '" + userID + "', '" + accessToken + "');";
+                    var userQueryString = "SELECT `contacts` FROM `user` WHERE `user_ID` = '" + userID + "';";
 
-                    connection.query(insertQueryString, function(err, data) {
-
+                    connection.query(userQueryString, function(err, result) {
                         if (err) throw err;
 
-                        cb(data);
+                        console.log(result[0].contacts);
+
+                        if (result[0].contacts === null) {
+
+                            var insertQueryString = "UPDATE `user` SET `contacts` = ('" + data[0].name + "-" + friendID + "') WHERE `user_ID` = '" + userID + "';";
+                        
+                            console.log(insertQueryString);
+
+                            connection.query(insertQueryString, function(err, data) {
+
+                                if (err) throw err;
+
+                                var selectString = "SELECT `contacts` FROM `user` WHERE `user_ID` = '" + userID + "';";
+
+                                connection.query(selectString, function(err, data) {
+
+                                    if (err) throw err;
+
+                                    cb(data[0].contacts);
+                                })
+                            })
+
+                        } else {
+
+                            var split = result[0].contacts.split(',');
+                            // data[0].name.appendTo(split);
+                            // console.log("split", split.indexOf(data[0].name));
+                            
+                            if (split.indexOf(data[0].name) === -1) {
+
+                                var updateQueryString = "UPDATE `user` SET `contacts` = ('" + result[0].contacts + "," + data[0].name + "') WHERE `user_ID` = '" + userID + "';";
+
+                                connection.query(updateQueryString, function (err, response) {
+
+                                    if (err) throw err;
+
+                                    var selectString = "SELECT `contacts` FROM `user` WHERE `user_ID` = '" + userID + "';";
+
+                                    connection.query(selectString, function(err, data) {
+
+                                        if (err) throw err;
+
+                                        cb(data[0].contacts);
+                                    })
+                                })
+                            } else {
+
+                                // console.log(data[0].name + " is already in your contacts");
+                                cb(data[0].name + " is already in your contacts");
+                            }
+                        }
                     })
+                        
                 
                 } else {
 

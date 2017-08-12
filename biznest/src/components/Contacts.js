@@ -37,6 +37,10 @@ class Contacts extends Component {
         console.log("logged out");
     };
 
+    searchUser(event) {
+        console.log("hello");
+    }
+
 componentDidMount() {
         // console.log(this.props.location.search);
         console.log(this.props);
@@ -50,8 +54,20 @@ componentDidMount() {
             .then(function(result) {
                 console.log(result.data[0]);
                 var userData = result.data[0];
-               console.log(userData.contacts.split(','));
-               document.getElementById("contactList").innerHTML = userData.contacts.split(',');
+                var userList = userData.contacts.split(",");
+                console.log(userList); 
+                for (var i = 0; i < userList.length; i++) {
+                    var newList = document.createElement("LI");
+                    newList.createClass
+                    var linkTo = document.createElement("a");
+                    linkTo.setAttribute("href", "#");
+                    var contacts = document.createTextNode(userList[i]);
+                    linkTo.appendChild(contacts);
+                    newList.appendChild(linkTo);
+                    
+                    document.getElementById("contactList").appendChild(newList)
+
+                }
 
             })
 
@@ -64,12 +80,34 @@ componentDidMount() {
             
 
             .then(function(result) {
-                console.log(result.data[0]);
+                console.log(result.data[0].contacts);
+
                 var userData = result.data[0];
-                var userList = userData.contacts.split(',')
-                for (var i = 0; i < userList.length; i++) {
-                    document.getElementById("contactList").innerHTML = userData.contacts.split(',')[i];     
+
+                if (userData.contacts === null) {
+                    
+                } else {
+
+                    var userList = userData.contacts.split(",");
+                    console.log(userList);
+                    var splitList = userList[0].split("-");
+
+                    
+                    for (var i = 0; i < userList.length; i++) {
+                        var newList = document.createElement("LI");
+                        // newList.createClass
+                        var linkTo = document.createElement("a");
+                        linkTo.onClick = function() {this.searchUser};
+                        linkTo.setAttribute("href", "/" + this.props.location.search + "/" + userList[i]);
+                        var contacts = document.createTextNode(userList[i]);
+                        linkTo.appendChild(contacts);
+                        newList.appendChild(linkTo);
+                        
+                        document.getElementById("contactList").appendChild(newList)
+
+                    }
                 }
+                
                  
 
             })
@@ -107,17 +145,16 @@ componentDidMount() {
                 <a href="javascript:void(0)" onClick={this.hideSideNav} id="closeNavBtn">&times;</a>
                 <input type="text" id="searchBar" placeholder="Search in Contacts"/>
                 <a href="#" id="sideName" className="sideStyle"></a>
-                <Link to="/Profile" className="sideStyle">Profile</Link>
-                <a href="#" className="sideStyle">Groups</a>
-                <a href="#" className="sideStyle">Add Friend</a>
-                <a href="#" className="sideStyle">Settings</a>
+                <Link to={{pathname: "/profile/" + route}} className="sideStyle">Profile</Link>
+                <Link to={{pathname: "/Contacts/" + route}} className="sideStyle">Contacts</Link>
+                <Link to={{pathname: "/AddFriend/" + route}} className="sideStyle">Add Friend</Link>
                 <a href="/" onClick={ this.logoutFacebook.bind(this) }>Logout</a>
             </div>
 
             <div className="container profilePage">
-                <ul>
-                    <li id="contactList"></li>
-                </ul>
+                
+                    <ul id="contactList"></ul>
+                
                 
             </div>
         </div>    

@@ -167,10 +167,9 @@ class Profile extends Component {
                 <a href="javascript:void(0)" onClick={this.hideSideNav} id="closeNavBtn">&times;</a>
                 <input type="text" id="searchBar" placeholder="Search in Contacts"/>
                 <a href="#" id="sideName" className="sideStyle"></a>
+                <Link to={{pathname: "/profile/" + route}} className="sideStyle">Profile</Link>
                 <Link to={{pathname: "/Contacts/" + route}} className="sideStyle">Contacts</Link>
-                <a href="#" className="sideStyle">Groups</a>
                 <Link to={{pathname: "/AddFriend/" + route}} className="sideStyle">Add Friend</Link>
-                <a href="#" className="sideStyle">Settings</a>
                 <a href="/" onClick={ this.logoutFacebook.bind(this) }>Logout</a>
             </div>
 
