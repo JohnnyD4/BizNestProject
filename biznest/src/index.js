@@ -10,6 +10,7 @@ import Profile from './components/Profile';
 import EditProfile from './components/EditProfile';
 import Contacts from './components/Contacts';
 import AddFriend from './components/AddFriend';
+import Friend from './components/Friend';
 import registerServiceWorker from './registerServiceWorker';
 
 render((
@@ -24,6 +25,7 @@ render((
 				<Route name="EditProfile" path="/EditProfile" component={EditProfile}/>
 				<Route name="Contacts/:userID" path="/Contacts" component={Contacts}/>
 				<Route name="AddFriend/:userID" path="/AddFriend" component={AddFriend}/>
+				<Route name=":userID/:friendName" path="/Friend" component={Friend}/>
 			</switch>
 		</App>	
 	</BrowserRouter>

@@ -17,6 +17,30 @@ import './App.css';
 import axios from 'axios';
 
 class EditProfile extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+          term: ""
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleChange(event) {
+        var newState = {};
+        newState[event.target.id] = event.target.value;
+        this.setState(newState);
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        console.log("CLICK");
+        console.log(this.state.term);
+        this.props.setTerm(this.state.term);
+        this.setState({ term: "" });
+    }
 
     componentDidMount() {
         console.log("obj");
@@ -65,19 +89,7 @@ class EditProfile extends Component {
                 if (err) throw err;
             })
         }
-        // axios.get('http://localhost:4000/facebook/login')
-        // .then(function(response) {
-        //     console.log(response.data);
-        //     document.getElementById("userName").setAttribute("value", response.data.name);
-        //     document.getElementById("bio").innerHTML = response.data.biography;
-        //     document.getElementById("portfolio").setAttribute("href", response.data.portfolio);
-        //     document.getElementById("phoneNumber").setAttribute("value", response.data.work_phone);
-        //     document.getElementById("profilePic").setAttribute("src", response.data.profile_image);
-        //     document.getElementById("facebook").setAttribute("href", response.data.facebook);
-        // })
-        // .catch(function (error) {
-        //     console.log(error);
-        // });
+
     }
 
     showSideNav(event) {
@@ -99,13 +111,13 @@ class EditProfile extends Component {
     var router;
     if (this.props.location.search === "") {
         path = this.props.location.pathname;
-        console.log(path.split("/").reverse());
-        console.log("pathname", this.props.location.pathname);
+        // console.log(path.split("/").reverse());
+        // console.log("pathname", this.props.location.pathname);
         router = path.split("/").reverse();
         route = router[0];
     } else {
         route = this.props.location.search;
-        console.log("search", this.props.location.search);
+        // console.log("search", this.props.location.search);
     }
     return (
         <div>
@@ -125,6 +137,7 @@ class EditProfile extends Component {
             </div>
 
             <div className="container profilePage">
+                <form onSubmit = {this.handleSubmit}>
                 <div className="row">
                     <div className="col-sm-4">
                         <div className="profilePic">
@@ -138,7 +151,7 @@ class EditProfile extends Component {
                         <div className="profileInfo">
                             <div className="clientName">
                                 <p>Your Name</p>
-                                <input type="text" id="userName" className="editName"/>
+                                <input type="text" id="userName" className="editName" value={this.state.term} onChange={this.handleChange}/>
                             </div>
                             <div className="icons">
                                 <a href="#"><img className="icon" alt="Phone Icon" src={phone}/></a>
@@ -190,7 +203,7 @@ class EditProfile extends Component {
                         </div>
                     </div>
                 </div>
-                
+                </form>
             </div>
         </div>    
     );

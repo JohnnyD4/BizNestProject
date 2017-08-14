@@ -27,6 +27,13 @@ var model = {
 
 			cb(res);
 		})
+	},
+
+	showFriend: function(friendName, userID, cb) {
+		orm.showFriend(friendName, userID, function(res) {
+
+			cb(res);
+		})
 	}
 }
 

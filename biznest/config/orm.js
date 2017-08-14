@@ -105,7 +105,7 @@ var orm = {
 
                         if (result[0].contacts === null) {
 
-                            var insertQueryString = "UPDATE `user` SET `contacts` = ('" + data[0].name + "-" + friendID + "') WHERE `user_ID` = '" + userID + "';";
+                            var insertQueryString = "UPDATE `user` SET `contacts` = ('" + userID + "/" + data[0].name + "') WHERE `user_ID` = '" + userID + "';";
                         
                             console.log(insertQueryString);
 
@@ -131,7 +131,7 @@ var orm = {
                             
                             if (split.indexOf(data[0].name) === -1) {
 
-                                var updateQueryString = "UPDATE `user` SET `contacts` = ('" + result[0].contacts + "," + data[0].name + "') WHERE `user_ID` = '" + userID + "';";
+                                var updateQueryString = "UPDATE `user` SET `contacts` = ('" + result[0].contacts + "," + userID + "/" + data[0].name + "') WHERE `user_ID` = '" + userID + "';";
 
                                 connection.query(updateQueryString, function (err, response) {
 
@@ -165,6 +165,45 @@ var orm = {
                 cb("data")
             }
 
+        })
+    },
+
+    showFriend: function(friendName, userID, cb) {
+        var selectQueryString = "SELECT `contacts` FROM `user` where `user_ID` = '" + userID + "';";
+
+        connection.query(selectQueryString, function(err, data) {
+
+            if (err) throw err;
+
+            
+
+            var splitContacts = data[0].contacts.split(",");
+
+            for (var i = 0; i < splitContacts.length; i++) {
+                
+                var splitPath = splitContacts[i].split("/");
+                
+                console.log(splitPath[1]);
+
+                if (friendName === splitPath[1]) {
+                    console.log("friends", friendName);
+
+                    var getFriendDataQuery = "SELECT * FROM `user` WHERE `name` = '" + friendName + "';";
+
+                    connection.query(getFriendDataQuery, function (err, data) {
+
+                        if (err) throw err;
+
+                        console.log(data);
+
+                        cb(data);
+                    })
+                }
+
+            }
+            
+            
+            
         })
     }     
 }

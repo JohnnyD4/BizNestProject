@@ -43,9 +43,9 @@ class Contacts extends Component {
 
 componentDidMount() {
         // console.log(this.props.location.search);
-        console.log(this.props);
+        console.log("props", this.props);
 
-         if(this.props.location.search === "") {
+        if(this.props.location.search === "") {
 
             axios.post('http://localhost:4000/facebook/profile',  
             {userID: this.props.location.pathname})
@@ -54,20 +54,28 @@ componentDidMount() {
             .then(function(result) {
                 console.log(result.data[0]);
                 var userData = result.data[0];
-                var userList = userData.contacts.split(",");
-                console.log(userList); 
-                for (var i = 0; i < userList.length; i++) {
-                    var newList = document.createElement("LI");
-                    newList.createClass
-                    var linkTo = document.createElement("a");
-                    linkTo.setAttribute("href", "#");
-                    var contacts = document.createTextNode(userList[i]);
-                    linkTo.appendChild(contacts);
-                    newList.appendChild(linkTo);
-                    
-                    document.getElementById("contactList").appendChild(newList)
 
-                }
+                if (userData.contacts === null) {
+                    
+                } else {
+                    var userList = userData.contacts.split(",");
+                    console.log(userList); 
+                    for (var i = 0; i < userList.length; i++) {
+                        var newList = document.createElement("LI");
+                        newList.classList.add("listContacts");
+                        var linkTo = document.createElement("a");
+                        var h3 = document.createElement("h2");
+                        var hr = document.createElement("hr");
+                        linkTo.setAttribute("href", "/Friend/" + userList[i]);
+                        var contacts = document.createTextNode(userList[i].split("/")[1]);
+                        h3.appendChild(contacts);
+                        linkTo.appendChild(h3);
+                        newList.appendChild(linkTo);
+                        // newList.appendChild(hr);
+                        document.getElementById("contactList").appendChild(newList)
+
+                    }
+                }    
 
             })
 
@@ -81,7 +89,7 @@ componentDidMount() {
 
             .then(function(result) {
                 console.log(result.data[0].contacts);
-
+                // console.log("obj", this.props);
                 var userData = result.data[0];
 
                 if (userData.contacts === null) {
@@ -91,18 +99,20 @@ componentDidMount() {
                     var userList = userData.contacts.split(",");
                     console.log(userList);
                     var splitList = userList[0].split("-");
-
+                    
                     
                     for (var i = 0; i < userList.length; i++) {
                         var newList = document.createElement("LI");
-                        // newList.createClass
+                        newList.classList.add("listContacts");
                         var linkTo = document.createElement("a");
-                        linkTo.onClick = function() {this.searchUser};
-                        linkTo.setAttribute("href", "/" + this.props.location.search + "/" + userList[i]);
-                        var contacts = document.createTextNode(userList[i]);
-                        linkTo.appendChild(contacts);
+                        var h3 = document.createElement("h2");
+                        var hr = document.createElement("hr");
+                        linkTo.setAttribute("href", "/Friend/" + userList[i]);
+                        var contacts = document.createTextNode(userList[i].split("/")[1]);
+                        h3.appendChild(contacts);
+                        linkTo.appendChild(h3);
                         newList.appendChild(linkTo);
-                        
+                        // newList.appendChild(hr);
                         document.getElementById("contactList").appendChild(newList)
 
                     }

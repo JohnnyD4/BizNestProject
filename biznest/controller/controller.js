@@ -47,6 +47,21 @@ router.post("/facebook/profile", function(req, res, next) {
 
 })
 
+router.post("/getFriendProfile", function(req, res) {
+	console.log(req.body);
+
+	model.showFriend(
+		req.body.friendName,
+		req.body.userID,
+		function(data) {
+
+			console.log(data);
+
+			res.send(data);
+		})
+
+})
+
 router.post("/facebook/login", function(req, res, next) {
 	console.log("facebook login");
 
