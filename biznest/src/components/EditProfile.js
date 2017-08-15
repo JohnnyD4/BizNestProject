@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import logo from '../logo.svg';
 import {Link} from 'react-router-dom';
+import SimpleInput from 'react-simple-input';
 import phone from '../images/phoneIcon.png';
 import text from '../images/textIcon.png';
 import email from '../images/emailIcon.png';
@@ -32,15 +33,19 @@ class EditProfile extends Component {
         var newState = {};
         newState[event.target.id] = event.target.value;
         this.setState(newState);
+        console.log(newState);
     }
 
     handleSubmit(event) {
         event.preventDefault();
+        // this.setState({ term: "" });
         console.log("CLICK");
-        console.log(this.state.term);
-        this.props.setTerm(this.state.term);
-        this.setState({ term: "" });
+        console.log(this.state);
+        // this.props.setTerm(this.state.term);
+        axios.post("http:localhost:4000/editProfile", this.state) 
+        
     }
+
 
     componentDidMount() {
         console.log("obj");
@@ -92,6 +97,8 @@ class EditProfile extends Component {
 
     }
 
+
+
     showSideNav(event) {
         document.getElementById("mySideNav").style.width = "250px";
     }
@@ -137,7 +144,7 @@ class EditProfile extends Component {
             </div>
 
             <div className="container profilePage">
-                <form onSubmit = {this.handleSubmit}>
+                
                 <div className="row">
                     <div className="col-sm-4">
                         <div className="profilePic">
@@ -151,22 +158,27 @@ class EditProfile extends Component {
                         <div className="profileInfo">
                             <div className="clientName">
                                 <p>Your Name</p>
-                                <input type="text" id="userName" className="editName" value={this.state.term} onChange={this.handleChange}/>
+                                
+                                <input type="text" id="userName" className="editName" value={this.state.newState} onChange={this.handleChange}/>
+                                
                             </div>
                             <div className="icons">
                                 <a href="#"><img className="icon" alt="Phone Icon" src={phone}/></a>
-                                <input type="text" id="phoneNumber" className="editName" value="954-258-4340"/>
+                                <input type="text" id="phoneNumber" className="editName" value={this.state.newState} onChange={this.handleChange}/>
                                 <a href="#"><img className="icon" alt="Text Icon" src={text}/></a>
-                                <input type="text" className="editName" value="954-434-2140" />
+                                <input type="text" id="textNumber" className="editName" value={this.state.newState} onChange={this.handleChange}/>
                                 <a href="#"><img className="icon" alt="Email Icon" src={email}/></a>
-                                <input type="text" className="editName" value="JohnSDavis95@gmail.com" />
+                                <input type="text" id="emailAddress" className="editName" value={this.state.newState} onChange={this.handleChange}/>
 
 
                             </div>
                             <div className="editSave">
+                            <form onSubmit = {this.handleSubmit}>
                                 <Link to={{pathname: "/profile/" + route}} id="editBtn" className="edit">Save</Link>
+                                <button type="submit" className="btn btn-primary">Save</button>
+                            </form>    
                             </div>
-
+                            
                         </div>
                         
                     </div>
@@ -176,23 +188,23 @@ class EditProfile extends Component {
                 <div className="row">
                     <div className="col-sm-12">
                         <h4>Bio</h4>
-                        <textarea type="text" id="bio" className="editTextArea" className="text-area" value="I am a web developer for Code For Kids. I have 4 years of experience. My main focus is on Front-end, but have experience in Back-end."/>
-                        <p>portfolio link <input type="text" className="editName" value="http://codepen.com"/></p>
+                        <textarea type="text" id="bio" className="editTextArea" className="text-area" value={this.state.newState} onChange={this.handleChange}/>
+                        <p>portfolio link <input type="text" id="portfolio" className="editName" value={this.state.newState} onChange={this.handleChange}/></p>
                     </div>
                 </div>
 
                 <div className="row">
                     <div className="col-xs-3">
                         <ul className="list">
-                            <li className="social"><a href="#"><img className="icon" alt="LinkedIn" src={LinkedIn}/>LinkedIn</a><input type="text" className="editName"/></li>
-                            <li className="social"><a href="#"><img className="icon" alt="GitHub" src={GitHub}/>GitHub</a><input type="text" className="editName"/></li>
-                            <li className="social"><a href="#"><img className="icon" alt="Google+" src={Google}/>Google+</a><input type="text" className="editName"/></li>
-                            <li className="social"><a href="#"><img className="icon" alt="Twitter" src={Twitter}/>Twitter</a><input type="text" className="editName"/></li>
-                            <li className="social"><a href="#"><img className="icon" alt="Facebook" src={Facebook}/>Facebook</a><input type="text" className="editName"/></li>
-                            <li className="social"><a href="#"><img className="icon" alt="Youtube" src={Youtube}/>Youtube</a><input type="text" className="editName"/></li>
-                            <li className="social"><a href="#"><img className="icon" alt="Instagram" src={Instagram}/>Instagram</a><input type="text" className="editName"/></li>
-                            <li className="social"><a href="#"><img className="icon" alt="Pinterest" src={Pinterest}/>Pinterest</a><input type="text" className="editName"/></li>
-                            <li className="socail"><a href="#"><img className="icon" alt="Tumblr" src={Tumblr}/>Tumblr</a><input type="text" className="editName"/></li>
+                            <li className="social"><a href="#"><img className="icon" alt="LinkedIn" src={LinkedIn}/>LinkedIn</a><input type="text" id="linkedin" className="editName" value={this.state.newState} onChange={this.handleChange}/></li>
+                            <li className="social"><a href="#"><img className="icon" alt="GitHub" src={GitHub}/>GitHub</a><input type="text" id="github" className="editName" value={this.state.newState} onChange={this.handleChange}/></li>
+                            <li className="social"><a href="#"><img className="icon" alt="Google+" src={Google}/>Google+</a><input type="text" id="google" className="editName" value={this.state.newState} onChange={this.handleChange}/></li>
+                            <li className="social"><a href="#"><img className="icon" alt="Twitter" src={Twitter}/>Twitter</a><input type="text" id="twitter" className="editName" value={this.state.newState} onChange={this.handleChange}/></li>
+                            <li className="social"><a href="#"><img className="icon" alt="Facebook" src={Facebook}/>Facebook</a><input type="text" id="facebook" className="editName" value={this.state.newState} onChange={this.handleChange}/></li>
+                            <li className="social"><a href="#"><img className="icon" alt="Youtube" src={Youtube}/>Youtube</a><input type="text" id="youtube" className="editName" value={this.state.newState} onChange={this.handleChange}/></li>
+                            <li className="social"><a href="#"><img className="icon" alt="Instagram" src={Instagram}/>Instagram</a><input type="text" id="instagram" className="editName" value={this.state.newState} onChange={this.handleChange}/></li>
+                            <li className="social"><a href="#"><img className="icon" alt="Pinterest" src={Pinterest}/>Pinterest</a><input type="text" id="pinterest" className="editName" value={this.state.newState} onChange={this.handleChange}/></li>
+                            <li className="socail"><a href="#"><img className="icon" alt="Tumblr" src={Tumblr}/>Tumblr</a><input type="text" id="tumblr" className="editName" value={this.state.newState} onChange={this.handleChange}/></li>
                         </ul>
 
                     </div>
@@ -203,7 +215,7 @@ class EditProfile extends Component {
                         </div>
                     </div>
                 </div>
-                </form>
+            
             </div>
         </div>    
     );

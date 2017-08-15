@@ -5156,6 +5156,10 @@ react-scripts@1.0.10:
   optionalDependencies:
     fsevents "1.1.2"
 
+react-simple-input@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/react-simple-input/-/react-simple-input-0.3.1.tgz#ff1c77838eb03a1823597df481143f370719da9b"
+
 react@^15.6.1:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/react/-/react-15.6.1.tgz#baa8434ec6780bde997cdc380b79cd33b96393df"
