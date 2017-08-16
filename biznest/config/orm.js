@@ -200,11 +200,67 @@ var orm = {
                     })
                 }
 
-            }
-            
-            
+            }   
             
         })
+    },
+
+    editProfile: function(userID, cb) {
+        var selectQueryString = "SELECT * FROM `user` where `user_ID` = '" + userID + "';";
+
+        connection.query(selectQueryString, function(err, data) {
+
+            if (err) throw err;
+
+            cb(data);
+        })
+    },
+
+    saveEdits: function(userID, userName, phoneNumber, textNumber, emailAddress, bio, portfolio, linkedin, github, google, twitter, facebook, youtube, instagram, pinterest, tumblr, cb) {
+        var updateProfile = "UPDATE `user` SET `name` = '" + userName + "', ";
+
+        updateProfile += "`work_phone` = '" + phoneNumber + "', ";
+
+        updateProfile += "`text_phone` = '" + textNumber + "', ";
+
+        updateProfile += "`email_address` = '" + emailAddress + "', ";
+
+        updateProfile += "`biography` = '" + bio + "', ";
+
+        updateProfile += "`portfolio` = '" + portfolio + "', ";
+
+        updateProfile += "`linkedin` = '" + linkedin + "', ";
+
+        updateProfile += "`github` = '" + github + "', ";
+
+        updateProfile += "`google` = '" + google + "', ";
+
+        updateProfile += "`twitter` = '" + twitter + "', ";
+
+        updateProfile += "`facebook` = '" + facebook + "', ";
+
+        updateProfile += "`instagram` = '" + instagram + "', ";
+
+        updateProfile += "`pinterest` = '" + pinterest + "', ";
+
+        updateProfile += "`youtube` = '" + youtube + "', ";
+
+        updateProfile += "`tumblr` = '" + tumblr + "' ";
+
+        updateProfile += "WHERE `user_ID` = '" + userID + "';";
+
+        console.log("orm", updateProfile);
+
+        connection.query(updateProfile, function(err, data) {
+
+            if (err) throw err;
+
+            console.log(data);
+
+            cb(data);
+        })
+
+
     }     
 }
 

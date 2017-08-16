@@ -34,6 +34,20 @@ var model = {
 
 			cb(res);
 		})
+	},
+
+	editProfile: function(userID, cb) {
+		orm.editProfile(userID, function(res) {
+
+			cb(res);
+		})
+	},
+
+	saveEdits: function(userID, userName, phoneNumber, textNumber, emailAddress, bio, portfolio, linkedin, github, google, twitter, facebook, youtube, instagram, pinterest, tumblr, cb) {
+		orm.saveEdits(userID, userName, phoneNumber, textNumber, emailAddress, bio, portfolio, linkedin, github, google, twitter, facebook, youtube, instagram, pinterest, tumblr, function(res) {
+
+			cb(res);
+		})
 	}
 }
 

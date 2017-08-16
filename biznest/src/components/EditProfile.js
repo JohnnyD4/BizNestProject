@@ -20,10 +20,17 @@ import axios from 'axios';
 class EditProfile extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-          term: ""
-        };
+        if(this.props.location.search === "") {
+            var splitID = this.props.location.pathname.split("?").reverse()[0]
+            this.state = {
+                userID: splitID
+            };
+        } else {
+            var splitID = this.props.location.search.split("?").reverse()[0]
+            this.state = {
+                userID: splitID
+            };
+        }
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,12 +45,17 @@ class EditProfile extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        // this.setState({ term: "" });
+        this.setState({ term: "" });
         console.log("CLICK");
         console.log(this.state);
         // this.props.setTerm(this.state.term);
-        axios.post("http:localhost:4000/editProfile", this.state) 
         
+        axios.post("http://localhost:4000/editProfile", this.state) 
+
+        .then(function(result) {
+            console.log(result);
+        })
+
     }
 
 
@@ -58,14 +70,24 @@ class EditProfile extends Component {
             .then(function(result) {
                 console.log(result.data[0]);
                 var userData = result.data[0];
-                console.log(userData.name);
+                console.log(userData.portfolio);
+                
                 document.getElementById("userName").setAttribute("placeholder", userData.name);
-                // document.getElementById("userName").innerHTML = userData.name;
-                // document.getElementById("bio").innerHTML = userData.biography;
-                // document.getElementById("portfolio").setAttribute("href", userData.portfolio);
-                // document.getElementById("phoneNumber").setAttribute("value", userData.work_phone);
-                // document.getElementById("profilePic").setAttribute("src", userData.profile_image);
-                // document.getElementById("facebook").setAttribute("href", userData.facebook);
+                document.getElementById("portfolio").setAttribute("placeholder", userData.portfolio);
+                document.getElementById("bio").setAttribute("placeholder", userData.biography);
+                document.getElementById("phoneNumber").setAttribute("placeholder", userData.work_phone);
+                document.getElementById("textNumber").setAttribute("placeholder", userData.text_phone);
+                document.getElementById("emailAddress").setAttribute("placeholder", userData.email_address);
+                document.getElementById("portfolio").setAttribute("placeholder", userData.portfolio);
+                document.getElementById("linkedin").setAttribute("placeholder", userData.linkedin);
+                document.getElementById("github").setAttribute("placeholder", userData.github);
+                document.getElementById("google").setAttribute("placeholder", userData.google);
+                document.getElementById("facebook").setAttribute("placeholder", userData.facebook);
+                document.getElementById("twitter").setAttribute("placeholder", userData.twitter);
+                document.getElementById("instagram").setAttribute("placeholder", userData.instagram);
+                document.getElementById("pinterest").setAttribute("placeholder", userData.pinterest);
+                document.getElementById("youtube").setAttribute("placeholder", userData.youtube);
+                document.getElementById("tumblr").setAttribute("placeholder", userData.tumblr);
 
             })
 
@@ -83,11 +105,22 @@ class EditProfile extends Component {
                 console.log(userData.name);
                   
                 document.getElementById("userName").setAttribute("placeholder", userData.name);
-                // document.getElementById("bio").innerHTML = userData.biography;
-                // document.getElementById("portfolio").setAttribute("href", userData.portfolio);
-                // document.getElementById("phoneNumber").setAttribute("value", userData.work_phone);
-                // document.getElementById("profilePic").setAttribute("src", userData.profile_image);
-                // document.getElementById("facebook").setAttribute("href", userData.facebook);
+                document.getElementById("portfolio").setAttribute("placeholder", userData.portfolio);
+                document.getElementById("bio").setAttribute("placeholder", userData.biography);
+                document.getElementById("phoneNumber").setAttribute("placeholder", userData.work_phone);
+                document.getElementById("textNumber").setAttribute("placeholder", userData.text_phone);
+                document.getElementById("emailAddress").setAttribute("placeholder", userData.email_address);
+                document.getElementById("portfolio").setAttribute("placeholder", userData.portfolio);
+                document.getElementById("linkedin").setAttribute("placeholder", userData.linkedin);
+                document.getElementById("github").setAttribute("placeholder", userData.github);
+                document.getElementById("google").setAttribute("placeholder", userData.google);
+                document.getElementById("facebook").setAttribute("placeholder", userData.facebook);
+                document.getElementById("twitter").setAttribute("placeholder", userData.twitter);
+                document.getElementById("instagram").setAttribute("placeholder", userData.instagram);
+                document.getElementById("pinterest").setAttribute("placeholder", userData.pinterest);
+                document.getElementById("youtube").setAttribute("placeholder", userData.youtube);
+                document.getElementById("tumblr").setAttribute("placeholder", userData.tumblr);
+               
             })
 
             .catch(function(err) {

@@ -23,7 +23,8 @@ router.post("/api/login", function(req, res, next) {
 
 	var emailAddress = req.body.emailAddress;
 
-	var password = req.body.password
+	var password = req.body.password;
+
 	model.testing(emailAddress, password, function(data) {
 
 	// console.log("controller", data[0].email_address);
@@ -141,6 +142,132 @@ router.post("/addFriend", function(req, res) {
 			console.log(data);
 			res.send(data);
 		})
+})
+
+router.post("/editProfile", function(req, res, next) {
+	
+	var userName;
+	var phoneNumber;
+	var textNumber;
+	var emailAddress;
+	var bio;
+	var portfolio;
+	var linkedin;
+	var github;
+	var google;
+	var twitter;
+	var facebook;
+	var youtube;
+	var instagram;
+	var pinterest;
+	var tumblr;
+
+	model.editProfile(req.body.userID, function(data) {
+		console.log(data);
+
+		var userID = req.body.userID;
+
+			if(!req.body.userName) {
+				userName = data[0].name
+			} else {
+				userName = req.body.userName
+			}
+			if(!req.body.phoneNumber) {
+				phoneNumber = data[0].work_phone
+			} else {
+				phoneNumber = req.body.phoneNumber
+			}
+			if(!req.body.textNumber) {
+				textNumber = data[0].text_phone
+			} else {
+				textNumber = req.body.textNumber
+			}
+			if(!req.body.emailAddress) {
+				emailAddress = data[0].email_address
+			} else {
+				emailAddress = req.body.emailAddress
+			}
+			if(!req.body.bio) {
+				bio = data[0].biography
+			} else {
+				bio = req.body.bio
+			}
+			if(!req.body.portfolio) {
+				portfolio = data[0].portfolio
+			} else {
+				portfolio = req.body.portfolio
+			}
+			if(!req.body.linkedin) {
+				linkedin = data[0].linkedin
+			} else {
+				linkedin = req.body.linkedin
+			}
+			if(!req.body.github) {
+				github = data[0].github
+			} else {
+				github = req.body.github
+			}
+			if(!req.body.google) {
+				google = data[0].google
+			} else {
+				google = req.body.google
+			}
+			if(!req.body.facebook) {
+				facebook = data[0].facebook
+			} else {
+				facebook = req.body.facebook
+			}
+			if(!req.body.twitter) {
+				twitter = data[0].twitter
+			} else {
+				twitter = req.body.twitter
+			}
+			if(!req.body.instagram) {
+				instagram = data[0].instagram
+			} else {
+				instagram = req.body.instagram
+			}
+			if(!req.body.pinterest) {
+				pinterest = data[0].pinterest
+			} else {
+				pinterest = req.body.pinterest
+			}
+			if(!req.body.youtube) {
+				youtube = data[0].tumblr
+			} else {
+				youtube = req.body.tumblr
+			}
+			if(!req.body.tumblr) {
+				tumblr = data[0].tumblr
+			} else {
+				tumblr = req.body.tumblr
+			}
+
+		model.saveEdits(
+			userID,
+			userName,
+			phoneNumber,
+			textNumber,
+			emailAddress,
+			bio,
+			portfolio,
+			linkedin,
+			github,
+			google,
+			twitter,
+			facebook,
+			youtube,
+			instagram,
+			pinterest,
+			tumblr,
+			function(data) {
+				console.log(data);
+
+				res.send(data);
+			})
+	})
+
+
 })
 
 
