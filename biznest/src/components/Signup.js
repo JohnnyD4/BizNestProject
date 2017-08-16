@@ -23,13 +23,9 @@ class MyComponent extends React.Component {
         this.setState({
             user: response.userID
         })
-       // document.getElementbyId("buttonSignUp").innerHTML = response.name;
-        // this.props.name = response.name; 
+
         console.log(this.state.user);
-        // console.log("response", response.userID);
-        // test = response.userID;
-        // console.log(test);
-        // Object.preventExtensions(test.user);
+
         axios.post('http://localhost:4000/facebook/login',  
         response)
         

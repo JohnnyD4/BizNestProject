@@ -61,7 +61,7 @@ class AddFriend extends Component {
 
         axios.post('http://localhost:4000/addFriend', 
         {
-            friendID: "1805067389507703",
+            friendID: "107233813316900",
             userID: route
         })
 

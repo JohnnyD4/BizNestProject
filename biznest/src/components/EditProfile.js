@@ -72,7 +72,7 @@ class EditProfile extends Component {
                 var userData = result.data[0];
                 console.log(userData.portfolio);
                 
-                document.getElementById("userName").setAttribute("placeholder", userData.name);
+                document.getElementById("userName").innerHTML = userData.name;
                 document.getElementById("portfolio").setAttribute("placeholder", userData.portfolio);
                 document.getElementById("bio").setAttribute("placeholder", userData.biography);
                 document.getElementById("phoneNumber").setAttribute("placeholder", userData.work_phone);
@@ -88,6 +88,8 @@ class EditProfile extends Component {
                 document.getElementById("pinterest").setAttribute("placeholder", userData.pinterest);
                 document.getElementById("youtube").setAttribute("placeholder", userData.youtube);
                 document.getElementById("tumblr").setAttribute("placeholder", userData.tumblr);
+                document.getElementById("profilePicture").setAttribute("placeholder", userData.profile_image);
+                document.getElementById("editImage").setAttribute("src", userData.profile_image);
 
             })
 
@@ -104,7 +106,7 @@ class EditProfile extends Component {
                 var userData = result.data[0];
                 console.log(userData.name);
                   
-                document.getElementById("userName").setAttribute("placeholder", userData.name);
+                document.getElementById("userName").innerHTML = userData.name;
                 document.getElementById("portfolio").setAttribute("placeholder", userData.portfolio);
                 document.getElementById("bio").setAttribute("placeholder", userData.biography);
                 document.getElementById("phoneNumber").setAttribute("placeholder", userData.work_phone);
@@ -120,6 +122,8 @@ class EditProfile extends Component {
                 document.getElementById("pinterest").setAttribute("placeholder", userData.pinterest);
                 document.getElementById("youtube").setAttribute("placeholder", userData.youtube);
                 document.getElementById("tumblr").setAttribute("placeholder", userData.tumblr);
+                document.getElementById("profilePicture").setAttribute("placeholder", userData.profile_image);
+                document.getElementById("editImage").setAttribute("src", userData.profile_image);
                
             })
 
@@ -181,8 +185,9 @@ class EditProfile extends Component {
                 <div className="row">
                     <div className="col-sm-4">
                         <div className="profilePic">
-                            <p className="imgP">click on photo to change</p>
-                            <img className="editProfileImage" alt="Profile" src="http://cumbrianrun.co.uk/wp-content/uploads/2014/02/default-placeholder-300x300.png"/>
+                            
+                            
+                            <img className="editProfileImage" id="editImage" alt="Profile" src="http://cumbrianrun.co.uk/wp-content/uploads/2014/02/default-placeholder-300x300.png"/>
 
                         </div>
                     </div>
@@ -190,9 +195,9 @@ class EditProfile extends Component {
                     <div className="col-sm-8">
                         <div className="profileInfo">
                             <div className="clientName">
-                                <p>Your Name</p>
+                                <h4 id="userName"></h4>
                                 
-                                <input type="text" id="userName" className="editName" value={this.state.newState} onChange={this.handleChange}/>
+                                
                                 
                             </div>
                             <div className="icons">
@@ -202,13 +207,14 @@ class EditProfile extends Component {
                                 <input type="text" id="textNumber" className="editName" value={this.state.newState} onChange={this.handleChange}/>
                                 <a href="#"><img className="icon" alt="Email Icon" src={email}/></a>
                                 <input type="text" id="emailAddress" className="editName" value={this.state.newState} onChange={this.handleChange}/>
-
+                                <p>Image Link</p>
+                                <input type="text" id="profilePicture" className="editName" value={this.state.newState} onChange={this.handleChange}/>
 
                             </div>
                             <div className="editSave">
                             <form onSubmit = {this.handleSubmit}>
-                                <Link to={{pathname: "/profile/" + route}} id="editBtn" className="edit">Save</Link>
-                                <button type="submit" className="btn btn-primary">Save</button>
+                                <Link to={{pathname: "/profile/" + route}} id="editBtn" className="">Profile</Link>
+                                <button type="submit" className="btn btn-primary">Save Changes</button>
                             </form>    
                             </div>
                             

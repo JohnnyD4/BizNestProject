@@ -43,8 +43,8 @@ var model = {
 		})
 	},
 
-	saveEdits: function(userID, userName, phoneNumber, textNumber, emailAddress, bio, portfolio, linkedin, github, google, twitter, facebook, youtube, instagram, pinterest, tumblr, cb) {
-		orm.saveEdits(userID, userName, phoneNumber, textNumber, emailAddress, bio, portfolio, linkedin, github, google, twitter, facebook, youtube, instagram, pinterest, tumblr, function(res) {
+	saveEdits: function(userID, userName, profilePicture, phoneNumber, textNumber, emailAddress, bio, portfolio, linkedin, github, google, twitter, facebook, youtube, instagram, pinterest, tumblr, cb) {
+		orm.saveEdits(userID, userName, profilePicture, phoneNumber, textNumber, emailAddress, bio, portfolio, linkedin, github, google, twitter, facebook, youtube, instagram, pinterest, tumblr, function(res) {
 
 			cb(res);
 		})

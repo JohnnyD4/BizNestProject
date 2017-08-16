@@ -216,8 +216,10 @@ var orm = {
         })
     },
 
-    saveEdits: function(userID, userName, phoneNumber, textNumber, emailAddress, bio, portfolio, linkedin, github, google, twitter, facebook, youtube, instagram, pinterest, tumblr, cb) {
+    saveEdits: function(userID, userName, profilePicture, phoneNumber, textNumber, emailAddress, bio, portfolio, linkedin, github, google, twitter, facebook, youtube, instagram, pinterest, tumblr, cb) {
         var updateProfile = "UPDATE `user` SET `name` = '" + userName + "', ";
+
+        updateProfile += "`profile_image` = '" + profilePicture + "', ";
 
         updateProfile += "`work_phone` = '" + phoneNumber + "', ";
 

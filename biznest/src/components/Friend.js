@@ -93,6 +93,16 @@ class Friend extends Component {
                 document.getElementById("phoneNumber").setAttribute("value", userData.work_phone);
                 document.getElementById("profilePic").setAttribute("src", userData.profile_image);
                 document.getElementById("facebook").setAttribute("href", userData.facebook);
+                document.getElementById("linkedin").setAttribute("href", userData.linkedin);
+                document.getElementById("google").setAttribute("href", userData.google);
+                document.getElementById("github").setAttribute("href", userData.github);
+                document.getElementById("twitter").setAttribute("href", userData.twitter);
+                document.getElementById("pinterest").setAttribute("href", userData.pinterest);
+                document.getElementById("instagram").setAttribute("href", userData.instagram);
+                document.getElementById("tumblr").setAttribute("href", userData.tumblr);
+                document.getElementById("google").setAttribute("href", userData.google);
+                document.getElementById("mailto").setAttribute("href", "mailto:" + userData.email_address);
+                document.getElementById("tel").setAttribute("href", "tel:" + userData.work_phone);
 
             })
 
@@ -120,6 +130,17 @@ class Friend extends Component {
                 document.getElementById("phoneNumber").setAttribute("value", userData.work_phone);
                 document.getElementById("profilePic").setAttribute("src", userData.profile_image);
                 document.getElementById("facebook").setAttribute("href", userData.facebook);
+                document.getElementById("linkedin").setAttribute("href", userData.linkedin);
+                document.getElementById("google").setAttribute("href", userData.google);
+                document.getElementById("github").setAttribute("href", userData.github);
+                document.getElementById("twitter").setAttribute("href", userData.twitter);
+                document.getElementById("pinterest").setAttribute("href", userData.pinterest);
+                document.getElementById("instagram").setAttribute("href", userData.instagram);
+                document.getElementById("tumblr").setAttribute("href", userData.tumblr);
+                document.getElementById("google").setAttribute("href", userData.google);
+                document.getElementById("mailto").setAttribute("href", "mailto:" + userData.email_address);
+                document.getElementById("tel").setAttribute("href", "tel:" + userData.work_phone);
+
             })
 
             .catch(function(err) {
@@ -176,13 +197,13 @@ class Friend extends Component {
                                 <h3 onClick={this.fetchUserData} id="userName"></h3>
                             </div>
                             <div className="icons">
-                                <a href="#" ><img className="icon" alt="Phone Icon" id="phoneNumber" onClick={this.showUserPhone} src={phone}/></a>
+                                <a id="tel" href="#" ><img className="icon" alt="Phone Icon" id="phoneNumber" onClick={this.showUserPhone} src={phone}/></a>
                                 <a href="#" onClick={this.showUserCellPhone}><img className="icon" alt="Text Icon" id="cellNumber" value={this.props.cellPhone} src={text}/></a>
-                                <a href="#" onClick={this.showUserEmail}><img className="icon" alt="Email Icon" id="emailAddress" value={this.props.email} src={email}/></a>
+    							<a id="mailto" href="#">
+    								<img className="icon" alt="Email Icon" id="emailAddress" value={this.props.email} src={email}/>
+    							</a>
 
-
-                            </div>
-                           
+                            </div>                           
 
                         </div>
                         
@@ -199,25 +220,28 @@ class Friend extends Component {
                 </div>
 
                 <div className="row">
-                    <div className="col-xs-3">
+                    <div className="col-xs-6">
                         <ul className="list">
-                            <li className="social"><a href={this.props.linkedin}><img className="icon" alt="LinkedIn" src={LinkedIn}/>LinkedIn</a></li>
-                            <li className="social"><a href={this.props.github}><img className="icon" alt="GitHub" src={GitHub}/>GitHub</a></li>
-                            <li className="social"><a href={this.props.google}><img className="icon" alt="Google+" src={Google}/>Google+</a></li>
-                            <li className="social"><a href={this.props.twitter}><img className="icon" alt="Twitter" src={Twitter}/>Twitter</a></li>
-                            <li className="social"><a id="facebook"><img className="icon" alt="Facebook" src={Facebook}/>Facebook</a></li>
-                            <li className="social"><a href={this.props.youtube}><img className="icon" alt="YouTube" src={Youtube}/>Youtube</a></li>
-                            <li className="social"><a href={this.props.instagram}><img className="icon" alt="Instagram" src={Instagram}/>Instagram</a></li>
-                            <li className="social"><a href={this.props.pinterest}><img className="icon" alt="Pinterest" src={Pinterest}/>Pinterest</a></li>
-                            <li className="socail"><a href={this.props.tumblr}><img className="icon" alt="Tumblr" src={Tumblr}/>Tumblr</a></li>
+                            <h3>Professional</h3>
+                            <li className="social"><a id="linkedin" href={this.props.linkedin}><img className="icon" alt="LinkedIn" src={LinkedIn}/>LinkedIn</a></li>
+                            <li className="social"><a id="github" href={this.props.github}><img className="icon" alt="GitHub" src={GitHub}/>GitHub</a></li>
+                            <li className="social"><a id="google" href={this.props.google}><img className="icon" alt="Google+" src={Google}/>Google+</a></li>
+                            
                         </ul>
 
                     </div>
+                    <div className="col-xs-6">
+                        <ul className="list">
+                            <h3>Social</h3>
+                            <li className="social"><a id="twitter" href={this.props.twitter}><img className="icon" alt="Twitter" src={Twitter}/>Twitter</a></li>
+                            <li className="social"><a id="facebook"><img className="icon" alt="Facebook" src={Facebook}/>Facebook</a></li>
+                            <li className="social"><a id="youtube" href={this.props.youtube}><img className="icon" alt="YouTube" src={Youtube}/>Youtube</a></li>
+                            <li className="social"><a id="instagram" href={this.props.instagram}><img className="icon" alt="Instagram" src={Instagram}/>Instagram</a></li>
+                            <li className="social"><a id="pinterest" href={this.props.pinterest}><img className="icon" alt="Pinterest" src={Pinterest}/>Pinterest</a></li>
+                            <li className="socail"><a id="tumblr" href={this.props.tumblr}><img className="icon" alt="Tumblr" src={Tumblr}/>Tumblr</a></li>
 
-                    <div className="col-xs-8">
-                        <div className="images">
-                            
-                        </div>
+                        </ul>
+
                     </div>
                 </div>
                 

@@ -147,6 +147,7 @@ router.post("/addFriend", function(req, res) {
 router.post("/editProfile", function(req, res, next) {
 	
 	var userName;
+	var profilePicture;
 	var phoneNumber;
 	var textNumber;
 	var emailAddress;
@@ -171,6 +172,11 @@ router.post("/editProfile", function(req, res, next) {
 				userName = data[0].name
 			} else {
 				userName = req.body.userName
+			}
+			if(!req.body.profilePicture) {
+				profilePicture = data[0].profile_image
+			} else {
+				profilePicture = req.body.profilePicture
 			}
 			if(!req.body.phoneNumber) {
 				phoneNumber = data[0].work_phone
@@ -246,6 +252,7 @@ router.post("/editProfile", function(req, res, next) {
 		model.saveEdits(
 			userID,
 			userName,
+			profilePicture,
 			phoneNumber,
 			textNumber,
 			emailAddress,

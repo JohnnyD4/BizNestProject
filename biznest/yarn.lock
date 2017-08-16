@@ -5092,6 +5092,10 @@ react-facebook-login@^3.6.2:
   version "3.6.2"
   resolved "https://registry.yarnpkg.com/react-facebook-login/-/react-facebook-login-3.6.2.tgz#1965f6af54cc90341b788d0752185cfd25a14d30"
 
+react-mailto@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/react-mailto/-/react-mailto-0.4.0.tgz#2229cb60fca3552273f82e4de96c83f2d12c0d5f"
+
 react-router-dom@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-4.1.2.tgz#7f8a7ca868d32acadd19ca09543b40d26df8ec37"

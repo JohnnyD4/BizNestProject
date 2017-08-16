@@ -16,6 +16,7 @@
     "react-dom": "^15.6.1",
     "react-facebook-login": "^3.6.2",
     "react-facebook-login-hoc": "^1.1.1",
+    "react-mailto": "^0.4.0",
     "react-router-dom": "^4.1.2",
     "react-scripts": "1.0.10",
     "react-simple-input": "^0.3.1"
